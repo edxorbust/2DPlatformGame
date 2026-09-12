@@ -1,0 +1,356 @@
+fileFormatVersion: 2
+guid: 40d55e34b8018450ba3bedf75f73ca60
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 4172506112489859334
+    second: Moving Spikes 32x32 scaled 64x64_0
+  - first:
+      213: -2630281710187961790
+    second: Moving Spikes 32x32 scaled 64x64_1
+  - first:
+      213: -8010622529161706892
+    second: Moving Spikes 32x32 scaled 64x64_2
+  - first:
+      213: 8757886054875227643
+    second: Moving Spikes 32x32 scaled 64x64_3
+  - first:
+      213: -4550042088891481031
+    second: Moving Spikes 32x32 scaled 64x64_4
+  - first:
+      213: 5365444689787216965
+    second: Moving Spikes 32x32 scaled 64x64_5
+  - first:
+      213: -4960850335287409347
+    second: Moving Spikes 32x32 scaled 64x64_6
+  - first:
+      213: -2860528683323855125
+    second: Moving Spikes 32x32 scaled 64x64_7
+  - first:
+      213: -8236173605136012572
+    second: Moving Spikes 32x32 scaled 64x64_8
+  - first:
+      213: 2902119723865902961
+    second: Moving Spikes 32x32 scaled 64x64_9
+  - first:
+      213: 6333221830110567887
+    second: Moving Spikes 32x32 scaled 64x64_10
+  - first:
+      213: 302259968506825661
+    second: Moving Spikes 32x32 scaled 64x64_11
+  - first:
+      213: -5634497407080924119
+    second: Moving Spikes 32x32 scaled 64x64_12
+  - first:
+      213: 7113645360889718409
+    second: Moving Spikes 32x32 scaled 64x64_13
+  - first:
+      213: -2890138609788866734
+    second: Moving Spikes 32x32 scaled 64x64_14
+  - first:
+      213: 9037100489478638120
+    second: Moving Spikes 32x32 scaled 64x64_15
+  - first:
+      213: -6573871238768288173
+    second: Moving Spikes 32x32 scaled 64x64_16
+  - first:
+      213: -8902862782880820799
+    second: Moving Spikes 32x32 scaled 64x64_17
+  - first:
+      213: 4136826292726600530
+    second: Moving Spikes 32x32 scaled 64x64_18
+  - first:
+      213: -4631191847577256851
+    second: Moving Spikes 32x32 scaled 64x64_19
+  - first:
+      213: -529909623321363126
+    second: Moving Spikes 32x32 scaled 64x64_20
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 64
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Moving Spikes 32x32 scaled 64x64_0
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 609aa12d338b7e930800000000000000
+      internalID: 4172506112489859334
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moving Spikes 32x32 scaled 64x64_1
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2422a0d68bc5f7bd0800000000000000
+      internalID: -2630281710187961790
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moving Spikes 32x32 scaled 64x64_2
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4724397704d84d090800000000000000
+      internalID: -8010622529161706892
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moving Spikes 32x32 scaled 64x64_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bf56f2437f24a8970800000000000000
+      internalID: 8757886054875227643
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moving Spikes 32x32 scaled 64x64_4
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9340c8ac3d00bd0c0800000000000000
+      internalID: -4550042088891481031
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moving Spikes 32x32 scaled 64x64_5
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 544e5cc9483e57a40800000000000000
+      internalID: 5365444689787216965
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moving Spikes 32x32 scaled 64x64_6
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d35015d57e4872bb0800000000000000
+      internalID: -4960850335287409347
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: e67fdaf515c1f440d8fcad28e372d197
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      Moving Spikes 32x32 scaled 64x64_0: 4172506112489859334
+      Moving Spikes 32x32 scaled 64x64_1: -2630281710187961790
+      Moving Spikes 32x32 scaled 64x64_2: -8010622529161706892
+      Moving Spikes 32x32 scaled 64x64_3: 8757886054875227643
+      Moving Spikes 32x32 scaled 64x64_4: -4550042088891481031
+      Moving Spikes 32x32 scaled 64x64_5: 5365444689787216965
+      Moving Spikes 32x32 scaled 64x64_6: -4960850335287409347
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

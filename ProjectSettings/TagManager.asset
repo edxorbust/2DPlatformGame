@@ -1,0 +1,66 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 3
+  tags:
+  - OneWayPlatform
+  - Enemy
+  - PlataformaMovil
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - Background
+  - Water
+  - UI
+  - Ground
+  - Enemy
+  - Player
+  - VFX
+  - FloatingPlatforms
+  - TrapGround
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 2905010845
+    locked: 0
+  - name: Enviroment
+    uniqueID: 3069635041
+    locked: 0
+  - name: Ground
+    uniqueID: 451174827
+    locked: 0
+  - name: Traps
+    uniqueID: 3776786485
+    locked: 0
+  - name: Sprites
+    uniqueID: 1054896403
+    locked: 0
+  - name: VFX
+    uniqueID: 1022921459
+    locked: 0
+  m_RenderingLayers:
+  - Default
