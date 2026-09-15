@@ -14,7 +14,15 @@ public class EnemyChaseState : BaseState
     {
         Debug.Log("Enemigo: Entrando a Chase (Perseguir)");
         compromisedToMelee = false;
-        enemy.Animator.Play("Run");
+        if (enemy.Health.InSecondPhase)
+        {
+            enemy.Animator.Play("Run2");
+        }
+        else
+        {
+            enemy.Animator.Play("Run");
+        }
+        
         enemy.Rb.constraints = RigidbodyConstraints2D.FreezeRotation;
     }
 

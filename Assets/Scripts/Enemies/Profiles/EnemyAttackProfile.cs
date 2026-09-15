@@ -4,7 +4,8 @@ using UnityEngine;
 // 1. Las 6 categorías que definiste
 public enum AttackCategory 
 { 
-    Melee, 
+    Melee,
+    Heavy, 
     Dash, 
     Jump, 
     Shoot, 

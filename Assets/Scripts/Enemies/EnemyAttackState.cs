@@ -80,15 +80,36 @@ public class EnemyAttackState : BaseState
         
         if (comboCounter == 1)
         {
-            enemy.Animator.Play("LightAttack1");
+            if (enemy.Health.InSecondPhase)
+            {
+                enemy.Animator.Play("LightAttack12");
+            }
+            else
+            {
+                enemy.Animator.Play("LightAttack1");
+            }
         }
         else if (comboCounter == 2)
         {
-            enemy.Animator.Play("LightAttack2");
+            if (enemy.Health.InSecondPhase)
+            {
+                enemy.Animator.Play("LightAttack22");
+            }
+            else
+            {
+                enemy.Animator.Play("LightAttack2");
+            }
         }
         else if (comboCounter >= 3)
         {
-            enemy.Animator.Play("LightAttack3");
+            if (enemy.Health.InSecondPhase)
+            {
+                enemy.Animator.Play("LightAttack32");
+            }
+            else
+            {
+                enemy.Animator.Play("LightAttack3");
+            }
         }
 
         if (!continueAttacking)

@@ -3,15 +3,11 @@ using UnityEngine;
 public class EnemyJumpAttackState : BaseState
 {
     private SwordsmanController enemy;
-    private float jumpForce = 7f; // Ajusta este valor en tu inspector/controlador
-    private float dashSpeed = 18f; // Qué tan rápido vuela hacia el jugador
-    private float stopDistance = 0.5f;
-
-    // Variables nuevas que necesitas
-    private Vector2 posicionGuardada;
-    private bool animacionDashIniciada;
-    private bool estaHaciendoDash;
+    private float jumpForce = 11f; // Ajusta este valor en tu inspector/controlador
+    private bool animationEnded;
     private float gravedadOriginal;
+    private int counter;
+    private bool attackingStarted;
 
     public EnemyJumpAttackState(SwordsmanController enemyContext)
     {
@@ -21,8 +17,9 @@ public class EnemyJumpAttackState : BaseState
     public override void Enter()
     {
        // Reiniciamos las variables al entrar al estado
-        animacionDashIniciada = false;
-        estaHaciendoDash = false;
+        attackingStarted = false;
+        animationEnded = false;
+        counter = 0;
         
         // Guardamos la gravedad original para restaurarla después
         gravedadOriginal = enemy.Rb.gravityScale;
@@ -37,159 +34,146 @@ public class EnemyJumpAttackState : BaseState
 
     public override void Update()
     {
-        // Verificar cuando llega a su punto máximo de altura y asegurarnos de solo llamarlo una vez
-        if (!animacionDashIniciada && enemy.Rb.linearVelocity.y <= 0)
+        if (animationEnded)
         {
-            //enemy.FacePlayer();
-            Collider2D playerRadar = Physics2D.OverlapCircle(enemy.Rb.position, enemy.detectionRange, enemy.playerLayer);
-            animacionDashIniciada = true;
-            
+            enemy.Rb.gravityScale = gravedadOriginal;
+            enemy.StateMachine.ChangeState(enemy.FallState);
+            return;
+        }
+        // Verificar cuando llega a su punto máximo de altura y asegurarnos de solo llamarlo una vez
+        if (enemy.Rb.linearVelocity.y <= 0 && !attackingStarted)
+        {
+            attackingStarted = true;
             // CONGELAMOS AL ENEMIGO EN EL AIRE (opcional, pero da un efecto dramático muy bueno)
             enemy.Rb.linearVelocity = Vector2.zero;
             enemy.Rb.gravityScale = 0f;
 
-            // GUARDAMOS LA POSICIÓN DEL JUGADOR AQUÍ
-            // (Reemplaza 'enemy.playerTransform' con la variable que uses para referirte al jugador)
-            if (playerRadar != null)
-            {
-                // 3. Guardamos la posición del centro exacto del collider
-                posicionGuardada = playerRadar.bounds.center;
-            }
-            else
-            {
-                // Opcional: ¿Qué pasa si el jugador ya no está en rango?
-                // Podemos apuntar hacia adelante a ciegas, o cancelar el ataque.
-                // Ejemplo: ataca hacia donde está mirando
-                enemy.Rb.gravityScale = gravedadOriginal;
-                enemy.StateMachine.ChangeState(enemy.FallState);
-                return;
-            }
+            
             
             // Damos play a la animación de windup/dash attack
             if (enemy.undodgableAttackSign != null)
             {
                 GameObject.Instantiate(enemy.undodgableAttackSign, enemy.warningsPosition.position , Quaternion.identity);
             }
-            enemy.Animator.Play("AirDashAttack");
+            enemy.Animator.Play("AirAttack");
         }
     }
 
     public override void WindupFinishedTrigger()
     {
         // Le damos permiso a PhysicsUpdate para que empiece a moverlo
-        estaHaciendoDash = true;
         //enemy.FacePlayer();
         enemy.ReproducirSonido(enemy.sonidoAtaque);
     }
 
     public void OnAnimationImpactFrame()
+{
+    bool connectedHit = false;
+    bool facingRight = enemy.transform.localScale.x >= 1;
+
+    Collider2D[] hits = Physics2D.OverlapCircleAll(
+        enemy.transform.position,
+        enemy.detectionRange,
+        enemy.playerLayer
+    );
+
+    foreach (Collider2D hit in hits)
     {
-        bool connectedHit = false;
-        
+        Vector2 targetPosition = hit.bounds.center;
+        // Ignoramos cualquier collider que esté detrás del enemigo
+         if (!IsInsideAttackHalfCircle(targetPosition, facingRight))
+            {
+                Debug.Log("ningun jugador detectado");
+                continue;
+            }    
 
-        Collider2D[] hits = Physics2D.OverlapCircleAll(enemy.attackPoint.position, enemy.attackDetectorRange, enemy.playerLayer);
-        
-        foreach (Collider2D hit in hits)
+        PlayerController playerController = hit.GetComponent<PlayerController>();
+
+        if (playerController != null)
         {
-            PlayerController playerController = hit.GetComponent<PlayerController>();
+            enemy.ReproducirSonido(enemy.fleshCut);
 
-            if (playerController != null)
+            if (enemy.hitSparkPrefab != null)
             {
-                enemy.ReproducirSonido(enemy.fleshCut);
-                if (enemy.hitSparkPrefab != null)
-                {
-                    GameObject.Instantiate(enemy.hitSparkPrefab, enemy.attackPoint.position, Quaternion.identity);
-                }
-                if (CameraController.Instancia != null)
-                {
-                    CameraController.Instancia.AgitarCamara(0.1f, 0.04f);
-                }
-                
-                playerController.GetAttack(enemy.attackDamage, enemy.transform);
-                connectedHit = true;
+                GameObject.Instantiate(
+                    enemy.hitSparkPrefab,
+                    playerController.transform.position,
+                    Quaternion.identity
+                );
             }
-            else
+
+            if (CameraController.Instancia != null)
             {
-                BaseEntity entity = hit.GetComponent<BaseEntity>();
-                if (entity != null)
-                {
-                    entity.Damage(enemy.attackDamage);
-                }
+                CameraController.Instancia.AgitarCamara(0.1f, 0.04f);
             }
-            if (connectedHit)
+
+            playerController.GetAttack(
+                enemy.attackDamage,
+                enemy.transform
+            );
+
+            connectedHit = true;
+        }
+        else
+        {
+            BaseEntity entity = hit.GetComponent<BaseEntity>();
+
+            if (entity != null)
             {
-                enemy.TriggerHitStop(enemy.lightHitStopDuration);
+                entity.Damage(enemy.attackDamage);
             }
         }
-    }
 
-    public override void PhysicsUpdate()
-    {
-        if (estaHaciendoDash)
+        if (connectedHit)
         {
-            // 1. Movemos físicamente al enemigo hacia el punto guardado
-            Vector2 nuevaPosicion = Vector2.MoveTowards(
-                enemy.Rb.position, 
-                posicionGuardada, 
-                dashSpeed * Time.fixedDeltaTime
-            );
+            enemy.TriggerHitStop(enemy.lightHitStopDuration);
+        }
+    }
+}
+
+private bool IsInsideAttackHalfCircle(
+    Vector2 targetPosition,
+    bool facingRight)
+{
+    float centerX = enemy.transform.position.x;
+
+    if (facingRight)
+    {
+        return targetPosition.x >= centerX;
+    }
+    else
+    {
+        return targetPosition.x <= centerX;
+    }
+}
+
+    public override void AnimationFinishTrigger()
+    {
+        if (!attackingStarted)
+        {
+            return;
+        }
+        if (counter < 5)
+        {
             
-            enemy.Rb.MovePosition(nuevaPosicion);
+            
+            AnimatorStateInfo stateInfo = enemy.Animator.GetCurrentAnimatorStateInfo(0);
 
-            // 2. Verificamos si ya llegó al punto
-            float distanciaRestante = Vector2.Distance(enemy.Rb.position, posicionGuardada);
-            if (distanciaRestante <= stopDistance)
+            if (stateInfo.IsName("AirAttack"))
             {
-                // Frenamos el impacto
-                estaHaciendoDash = false;
-                enemy.Rb.linearVelocity = Vector2.zero;
-
-                bool connectedHit = false;
-        
-
-                Collider2D[] hits = Physics2D.OverlapCircleAll(enemy.attackPoint.position, enemy.attackRange, enemy.playerLayer);
-                
-                foreach (Collider2D hit in hits)
-                {
-                    PlayerController playerController = hit.GetComponent<PlayerController>();
-
-                    if (playerController != null)
-                    {
-                        enemy.ReproducirSonido(enemy.fleshCut);
-                        if (enemy.hitSparkPrefab != null)
-                        {
-                            GameObject.Instantiate(enemy.hitSparkPrefab, enemy.attackPoint.position, Quaternion.identity);
-                        }
-                        if (CameraController.Instancia != null)
-                        {
-                            CameraController.Instancia.AgitarCamara(0.1f, 0.04f);
-                        }
-                        
-                        playerController.GetAttack(enemy.attackDamage, enemy.transform);
-                        connectedHit = true;
-                    }
-                    else
-                    {
-                        BaseEntity entity = hit.GetComponent<BaseEntity>();
-                        if (entity != null)
-                        {
-                            entity.Damage(enemy.attackDamage);
-                        }
-                    }
-                    if (connectedHit)
-                    {
-                        enemy.TriggerHitStop(enemy.lightHitStopDuration);
-                    }
-                }
-                if (!enemy.IsGrounded())
-                {
-                    enemy.Rb.gravityScale = gravedadOriginal;
-                    enemy.StateMachine.ChangeState(enemy.FallState);
-                    return;
-                }
-                // Aquí puedes llamar a terminar el estado o pasar al siguiente movimiento
-                enemy.EjecutarSiguienteMovimiento();
+                counter++;
+                enemy.FacePlayer();
+                enemy.Animator.Play("Jump");
             }
+            else if (stateInfo.IsName("Jump"))
+            {
+                enemy.Animator.Play("AirAttack");
+            }
+        }
+        else
+        {
+            animationEnded = true;
+            attackingStarted = false;
         }
     }
 
@@ -197,7 +181,6 @@ public class EnemyJumpAttackState : BaseState
     {
         // MUY IMPORTANTE: Devolverle la gravedad al enemigo al salir del estado
         enemy.Rb.gravityScale = gravedadOriginal;
-        estaHaciendoDash = false;
         enemy.unParryableAttacking = false;
         enemy.cannotBeInterrupted = false;
     }

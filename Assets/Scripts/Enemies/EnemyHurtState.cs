@@ -12,7 +12,15 @@ public class EnemyHurtState : BaseState
 
     public override void Enter()
     {
-        enemy.Animator.Play("Hurt");
+
+        if (enemy.Health.InSecondPhase)
+        {
+            enemy.Animator.Play("Hurt2");
+        }
+        else
+        {
+            enemy.Animator.Play("Hurt");
+        }
         enemy.Rb.linearVelocity = new Vector2(0f, enemy.Rb.linearVelocity.y);
         
     }

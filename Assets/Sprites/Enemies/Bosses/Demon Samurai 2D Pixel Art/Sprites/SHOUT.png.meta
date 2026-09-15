@@ -121,7 +121,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -135,7 +135,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -156,10 +156,10 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -200,12 +200,12 @@ TextureImporter:
       name: SHOUT_0
       rect:
         serializedVersion: 2
-        x: 48
-        y: 11
-        width: 38
-        height: 49
+        x: 0
+        y: 0
+        width: 128
+        height: 78
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -222,12 +222,12 @@ TextureImporter:
       name: SHOUT_1
       rect:
         serializedVersion: 2
-        x: 178
-        y: 9
-        width: 36
-        height: 44
+        x: 128
+        y: 0
+        width: 128
+        height: 78
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -244,12 +244,12 @@ TextureImporter:
       name: SHOUT_2
       rect:
         serializedVersion: 2
-        x: 306
-        y: 9
-        width: 36
-        height: 44
+        x: 256
+        y: 0
+        width: 128
+        height: 78
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -266,12 +266,12 @@ TextureImporter:
       name: SHOUT_3
       rect:
         serializedVersion: 2
-        x: 434
-        y: 11
-        width: 36
-        height: 44
+        x: 384
+        y: 0
+        width: 128
+        height: 78
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -288,12 +288,12 @@ TextureImporter:
       name: SHOUT_4
       rect:
         serializedVersion: 2
-        x: 563
-        y: 11
-        width: 36
-        height: 46
+        x: 512
+        y: 0
+        width: 128
+        height: 78
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -310,12 +310,12 @@ TextureImporter:
       name: SHOUT_5
       rect:
         serializedVersion: 2
-        x: 691
-        y: 11
-        width: 36
-        height: 45
+        x: 640
+        y: 0
+        width: 128
+        height: 78
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -332,12 +332,12 @@ TextureImporter:
       name: SHOUT_6
       rect:
         serializedVersion: 2
-        x: 819
-        y: 11
-        width: 36
-        height: 45
+        x: 768
+        y: 0
+        width: 128
+        height: 78
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -354,12 +354,12 @@ TextureImporter:
       name: SHOUT_7
       rect:
         serializedVersion: 2
-        x: 925
-        y: 5
-        width: 68
-        height: 77
+        x: 896
+        y: 0
+        width: 128
+        height: 78
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -376,12 +376,12 @@ TextureImporter:
       name: SHOUT_8
       rect:
         serializedVersion: 2
-        x: 1054
-        y: 5
-        width: 57
-        height: 67
+        x: 1024
+        y: 0
+        width: 128
+        height: 78
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -398,12 +398,12 @@ TextureImporter:
       name: SHOUT_9
       rect:
         serializedVersion: 2
-        x: 1107
-        y: 58
-        width: 9
-        height: 9
+        x: 1152
+        y: 0
+        width: 128
+        height: 78
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -420,12 +420,12 @@ TextureImporter:
       name: SHOUT_10
       rect:
         serializedVersion: 2
-        x: 1111
-        y: 38
-        width: 11
-        height: 19
+        x: 1280
+        y: 0
+        width: 128
+        height: 78
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -442,12 +442,12 @@ TextureImporter:
       name: SHOUT_11
       rect:
         serializedVersion: 2
-        x: 1178
+        x: 1408
         y: 0
-        width: 66
-        height: 77
+        width: 128
+        height: 78
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -464,12 +464,12 @@ TextureImporter:
       name: SHOUT_12
       rect:
         serializedVersion: 2
-        x: 1240
-        y: 43
-        width: 15
-        height: 29
+        x: 1536
+        y: 0
+        width: 128
+        height: 78
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -486,12 +486,12 @@ TextureImporter:
       name: SHOUT_13
       rect:
         serializedVersion: 2
-        x: 1301
-        y: 1
-        width: 87
-        height: 81
+        x: 1664
+        y: 0
+        width: 128
+        height: 78
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -508,12 +508,12 @@ TextureImporter:
       name: SHOUT_14
       rect:
         serializedVersion: 2
-        x: 1437
-        y: 11
-        width: 70
-        height: 58
+        x: 1792
+        y: 0
+        width: 128
+        height: 78
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -530,12 +530,12 @@ TextureImporter:
       name: SHOUT_15
       rect:
         serializedVersion: 2
-        x: 1567
-        y: 11
-        width: 68
-        height: 58
+        x: 1920
+        y: 0
+        width: 128
+        height: 78
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -552,12 +552,12 @@ TextureImporter:
       name: SHOUT_16
       rect:
         serializedVersion: 2
-        x: 1695
-        y: 11
-        width: 53
-        height: 57
+        x: 2048
+        y: 0
+        width: 128
+        height: 78
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -570,275 +570,11 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
-    - serializedVersion: 2
-      name: SHOUT_17
-      rect:
-        serializedVersion: 2
-        x: 1822
-        y: 51
-        width: 9
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 7e28ca44b5234b0b0800000000000000
-      internalID: -5713886659650747673
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SHOUT_18
-      rect:
-        serializedVersion: 2
-        x: 1823
-        y: 11
-        width: 52
-        height: 58
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 20adaf739b424dd80800000000000000
-      internalID: -8226910241372317182
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SHOUT_19
-      rect:
-        serializedVersion: 2
-        x: 1828
-        y: 53
-        width: 7
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 4c7232e1b61812d80800000000000000
-      internalID: -8277192343063156796
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SHOUT_20
-      rect:
-        serializedVersion: 2
-        x: 1949
-        y: 11
-        width: 55
-        height: 57
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 253ec04c257c689a0800000000000000
-      internalID: -6231073876130077870
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SHOUT_21
-      rect:
-        serializedVersion: 2
-        x: 2080
-        y: 11
-        width: 51
-        height: 58
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: b3b5b2d172a13d020800000000000000
-      internalID: 2365262984595069755
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SHOUT_22
-      rect:
-        serializedVersion: 2
-        x: 1051
-        y: 20
-        width: 10
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: b75ec480f201b7f50800000000000000
-      internalID: 6880110649927329147
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SHOUT_23
-      rect:
-        serializedVersion: 2
-        x: 1108
-        y: 19
-        width: 10
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ae82cf133a9580460800000000000000
-      internalID: 7208109761059629290
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SHOUT_24
-      rect:
-        serializedVersion: 2
-        x: 1174
-        y: 15
-        width: 10
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 945d8bc2ae24600c0800000000000000
-      internalID: -4609923595027032759
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SHOUT_25
-      rect:
-        serializedVersion: 2
-        x: 1241
-        y: 14
-        width: 10
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ac89f68013d494fb0800000000000000
-      internalID: -4663111066175170358
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SHOUT_26
-      rect:
-        serializedVersion: 2
-        x: 1110
-        y: 11
-        width: 8
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 9e2702ed13ee17190800000000000000
-      internalID: -7966324367894220055
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SHOUT_27
-      rect:
-        serializedVersion: 2
-        x: 1242
-        y: 11
-        width: 6
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: f5bc5dc9ec9faef30800000000000000
-      internalID: 4605768234729589599
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SHOUT_28
-      rect:
-        serializedVersion: 2
-        x: 1297
-        y: 10
-        width: 10
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 29aefaaba4fd94140800000000000000
-      internalID: 4704536797817858706
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 395ea2980f22c438798cf454928c7806
     internalID: 0
     vertices: []
     indices: 
@@ -846,7 +582,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":17.0,"y":1.0},"gridSpriteSize":{"x":128.0,"y":78.0},"gridSpriteOffset":{"x":0.0,"y":30.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
       SHOUT_0: 7663043178125236870
       SHOUT_1: 4149497522002926721
@@ -857,19 +595,7 @@ TextureImporter:
       SHOUT_14: -6717962665732840784
       SHOUT_15: 4115979666558454906
       SHOUT_16: 1563324233132465704
-      SHOUT_17: -5713886659650747673
-      SHOUT_18: -8226910241372317182
-      SHOUT_19: -8277192343063156796
       SHOUT_2: -3566002665930362643
-      SHOUT_20: -6231073876130077870
-      SHOUT_21: 2365262984595069755
-      SHOUT_22: 6880110649927329147
-      SHOUT_23: 7208109761059629290
-      SHOUT_24: -4609923595027032759
-      SHOUT_25: -4663111066175170358
-      SHOUT_26: -7966324367894220055
-      SHOUT_27: 4605768234729589599
-      SHOUT_28: 4704536797817858706
       SHOUT_3: -3511230083084692977
       SHOUT_4: 1132898558249635211
       SHOUT_5: 4016192694171435973

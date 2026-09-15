@@ -46,12 +46,20 @@ public class SwordsmanController : EnemyController
     {
         if (StateMachine.CurrentState == AttackState) AttackState.OnAnimationImpactFrame();
         else if (StateMachine.CurrentState == DashState) DashState.OnAnimationImpactFrame();
+        else if (StateMachine.CurrentState == HeavyAttackState) HeavyAttackState.OnAnimationImpactFrame();
+        else if (StateMachine.CurrentState == JumpAttackState) JumpAttackState.OnAnimationImpactFrame();
     }
     public override void IniciarAtaque()
     {
         // Cuando el ChaseState llame a "IniciarAtaque", el Swordsman
         // ignorará el código base y ejecutará su propia lógica compleja:
         IniciarSecuenciaAleatoria();
+    }
+
+    public override void AnimationEvent_OnEnd()
+    {
+        base.AnimationEvent_OnEnd();
+        if (StateMachine.CurrentState == JumpAttackState) JumpAttackState.AnimationFinishTrigger();
     }
 
     public override bool IntentarAtaqueLargo()
@@ -121,8 +129,16 @@ public class SwordsmanController : EnemyController
                 StateMachine.ChangeState(DashState);
                 break;
             case AttackCategory.Jump:
+                if (!Health.InSecondPhase)
+                {
+                    StateMachine.ChangeState(HeavyAttackState);
+                    break;
+                }
                 StateMachine.ChangeState(JumpAttackState);
                 break;
+            case AttackCategory.Heavy:
+                StateMachine.ChangeState(HeavyAttackState);
+                break;    
             // ... el resto de tus categorías
         }
     }

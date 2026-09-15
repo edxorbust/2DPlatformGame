@@ -70,7 +70,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -84,7 +84,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -108,7 +108,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -149,12 +149,12 @@ TextureImporter:
       name: ATTACK 2 (FLAMING SWORD)_0
       rect:
         serializedVersion: 2
-        x: 48
-        y: 11
-        width: 48
-        height: 60
+        x: 0
+        y: 0
+        width: 128
+        height: 78
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -171,12 +171,12 @@ TextureImporter:
       name: ATTACK 2 (FLAMING SWORD)_1
       rect:
         serializedVersion: 2
-        x: 53
-        y: 59
-        width: 6
-        height: 6
+        x: 128
+        y: 0
+        width: 128
+        height: 78
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -193,12 +193,12 @@ TextureImporter:
       name: ATTACK 2 (FLAMING SWORD)_2
       rect:
         serializedVersion: 2
-        x: 174
-        y: 11
-        width: 43
-        height: 58
+        x: 256
+        y: 0
+        width: 128
+        height: 78
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -215,12 +215,12 @@ TextureImporter:
       name: ATTACK 2 (FLAMING SWORD)_3
       rect:
         serializedVersion: 2
-        x: 412
-        y: 8
-        width: 68
-        height: 51
+        x: 384
+        y: 0
+        width: 128
+        height: 78
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -237,12 +237,12 @@ TextureImporter:
       name: ATTACK 2 (FLAMING SWORD)_4
       rect:
         serializedVersion: 2
-        x: 541
-        y: 6
-        width: 85
-        height: 53
+        x: 512
+        y: 0
+        width: 128
+        height: 78
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -259,12 +259,12 @@ TextureImporter:
       name: ATTACK 2 (FLAMING SWORD)_5
       rect:
         serializedVersion: 2
-        x: 285
-        y: 8
-        width: 85
-        height: 48
+        x: 640
+        y: 0
+        width: 128
+        height: 78
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -277,143 +277,11 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
-    - serializedVersion: 2
-      name: ATTACK 2 (FLAMING SWORD)_6
-      rect:
-        serializedVersion: 2
-        x: 476
-        y: 50
-        width: 6
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 641d828042ae19f50800000000000000
-      internalID: 6886542745702814022
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ATTACK 2 (FLAMING SWORD)_7
-      rect:
-        serializedVersion: 2
-        x: 484
-        y: 42
-        width: 6
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 2c974d06568032a40800000000000000
-      internalID: 5342122814500796866
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ATTACK 2 (FLAMING SWORD)_8
-      rect:
-        serializedVersion: 2
-        x: 669
-        y: 11
-        width: 62
-        height: 44
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ae5bc7f9b5c0697e0800000000000000
-      internalID: -1759205016784292374
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ATTACK 2 (FLAMING SWORD)_9
-      rect:
-        serializedVersion: 2
-        x: 471
-        y: 33
-        width: 10
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 8069585191d088350800000000000000
-      internalID: 6019075303367087624
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ATTACK 2 (FLAMING SWORD)_10
-      rect:
-        serializedVersion: 2
-        x: 479
-        y: 14
-        width: 17
-        height: 22
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 1ce4418ed0e788d70800000000000000
-      internalID: 9045618449766960833
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ATTACK 2 (FLAMING SWORD)_11
-      rect:
-        serializedVersion: 2
-        x: 608
-        y: 32
-        width: 7
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 9d0fe51a4780e4490800000000000000
-      internalID: -7760255810896203559
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 2e8f8f58e440d4906a91c20936db06a9
     internalID: 0
     vertices: []
     indices: 
@@ -421,20 +289,16 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":6.0,"y":1.0},"gridSpriteSize":{"x":128.0,"y":78.0},"gridSpriteOffset":{"x":0.0,"y":30.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
       ATTACK 2 (FLAMING SWORD)_0: -1761830185093388198
       ATTACK 2 (FLAMING SWORD)_1: -2477816463665591116
-      ATTACK 2 (FLAMING SWORD)_10: 9045618449766960833
-      ATTACK 2 (FLAMING SWORD)_11: -7760255810896203559
       ATTACK 2 (FLAMING SWORD)_2: 7055562145001373994
       ATTACK 2 (FLAMING SWORD)_3: 2521281158915421623
       ATTACK 2 (FLAMING SWORD)_4: 3049719763689523062
       ATTACK 2 (FLAMING SWORD)_5: -4336497456835201705
-      ATTACK 2 (FLAMING SWORD)_6: 6886542745702814022
-      ATTACK 2 (FLAMING SWORD)_7: 5342122814500796866
-      ATTACK 2 (FLAMING SWORD)_8: -1759205016784292374
-      ATTACK 2 (FLAMING SWORD)_9: 6019075303367087624
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

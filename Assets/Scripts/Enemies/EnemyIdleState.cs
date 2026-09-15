@@ -13,7 +13,15 @@ public class EnemyIdleState : BaseState
     public override void Enter()
     {
         Debug.Log("Enemigo: Entrando a Idle");
-        enemy.Animator.Play("Idle");
+        if (enemy.Health.InSecondPhase)
+        {
+            enemy.Animator.Play("Idle2");
+        }
+        else
+        {
+            enemy.Animator.Play("Idle");
+        }
+       
         enemy.Rb.linearVelocity = new Vector2(0f, enemy.Rb.linearVelocity.y);
         timer = enemy.idleTime;
     }

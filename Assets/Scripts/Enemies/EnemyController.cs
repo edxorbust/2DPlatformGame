@@ -55,6 +55,7 @@ public class EnemyController : MonoBehaviour
     public float blockKnockbackForce = 2f;
     public bool isBlocking;
     public float blockTime = 1f;
+    public bool inmuneToAttacks = false;
 
     [Header("Arena del Jefe (Opcional)")]
     public BossArenaTrigger arenaDelJefe;
@@ -82,11 +83,13 @@ public class EnemyController : MonoBehaviour
     public EnemyIdleState IdleState { get; private set; }
     public EnemyChaseState ChaseState { get; private set; }
     public EnemyAttackState AttackState { get; private set; } // ¡Se queda aquí!
+    public EnemyHeavyAttackState HeavyAttackState { get; private set; }
     public EnemyStunnedState StunnedState { get; private set; }
     public EnemyDeathState DeathState { get; private set; }
     public EnemyHurtState HurtState { get; private set; }
     public EnemyFallState FallState { get; private set; }
     public EnemyPatrolState PatrolState { get; private set; }
+    public EnemySecondPhaseState SecondPhaseState { get; private set; }
 
     protected virtual void Awake()
     {
@@ -99,11 +102,13 @@ public class EnemyController : MonoBehaviour
         IdleState = new EnemyIdleState(this);
         ChaseState = new EnemyChaseState(this);
         AttackState = new EnemyAttackState(this);
+        HeavyAttackState = new EnemyHeavyAttackState(this);
         StunnedState = new EnemyStunnedState(this);
         DeathState = new EnemyDeathState(this);
         HurtState = new EnemyHurtState(this);
         FallState = new EnemyFallState(this);
         PatrolState = new EnemyPatrolState(this);
+        SecondPhaseState = new EnemySecondPhaseState(this);
 
         GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
         if (playerObj != null) playerTarget = playerObj.transform;
@@ -239,6 +244,8 @@ public class EnemyController : MonoBehaviour
     {
         if (StateMachine.CurrentState == AttackState) AttackState.OnAnimationEndFrame();
         if (StateMachine.CurrentState == HurtState) HurtState.AnimationFinishTrigger();
+        if (StateMachine.CurrentState == HeavyAttackState) HeavyAttackState.OnAnimationEndFrame();
+        if (StateMachine.CurrentState == SecondPhaseState) SecondPhaseState.AnimationFinishTrigger();
     }
 
     public virtual void DeathBoss_OnEnd()
@@ -247,6 +254,11 @@ public class EnemyController : MonoBehaviour
         {
             arenaDelJefe.FinalizarPeleaDeJefe();
         }
+    }
+
+    public void StartSecondPhase()
+    {
+        StateMachine.ChangeState(SecondPhaseState);
     }
 
     public virtual void AnimationEvent_WindupFinished()
@@ -272,7 +284,11 @@ public class EnemyController : MonoBehaviour
 
     // MÉTODO VIRTUAL: Solo hace el daño base. El hijo le pondrá el Parry encima.
     public virtual void GetAttack(int quantityDamage, Transform attacker, bool isThrowAttack=false, float directionThrowAttack=1.0f)
-    {            
+    { 
+        if (inmuneToAttacks)
+        {
+            return;
+        }           
         if (hitSparkPrefab != null)
         {
             GameObject.Instantiate(hitSparkPrefab, transform.position, Quaternion.identity);
@@ -287,7 +303,17 @@ public class EnemyController : MonoBehaviour
         {
             Debug.Log("aplicando dano finisher");
             Health.FinisherDamage();
-            if (Health.finisherLimit > 0) StateMachine.ChangeState(HurtState);
+            if (Health.finisherLimit > 0)
+            {
+                if (Health.InSecondPhase)
+                {
+                    StateMachine.ChangeState(SecondPhaseState);
+                }
+                else
+                {
+                    StateMachine.ChangeState(HurtState);
+                }
+            } 
             return;
         }
 

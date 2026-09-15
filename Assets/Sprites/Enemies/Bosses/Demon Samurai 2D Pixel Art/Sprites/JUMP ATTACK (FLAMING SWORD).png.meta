@@ -88,7 +88,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -102,7 +102,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -126,7 +126,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -167,12 +167,12 @@ TextureImporter:
       name: JUMP ATTACK (FLAMING SWORD)_0
       rect:
         serializedVersion: 2
-        x: 544
-        y: 11
-        width: 84
-        height: 95
+        x: 0
+        y: 0
+        width: 128
+        height: 78
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -189,12 +189,12 @@ TextureImporter:
       name: JUMP ATTACK (FLAMING SWORD)_1
       rect:
         serializedVersion: 2
-        x: 672
-        y: 11
-        width: 92
-        height: 97
+        x: 128
+        y: 0
+        width: 128
+        height: 78
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -211,12 +211,12 @@ TextureImporter:
       name: JUMP ATTACK (FLAMING SWORD)_2
       rect:
         serializedVersion: 2
-        x: 753
-        y: 64
-        width: 7
-        height: 6
+        x: 256
+        y: 0
+        width: 128
+        height: 78
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -233,12 +233,12 @@ TextureImporter:
       name: JUMP ATTACK (FLAMING SWORD)_3
       rect:
         serializedVersion: 2
-        x: 800
-        y: 11
-        width: 46
-        height: 76
+        x: 384
+        y: 0
+        width: 128
+        height: 78
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -255,12 +255,12 @@ TextureImporter:
       name: JUMP ATTACK (FLAMING SWORD)_4
       rect:
         serializedVersion: 2
-        x: 952
-        y: 9
-        width: 62
-        height: 76
+        x: 512
+        y: 17
+        width: 128
+        height: 88
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -277,12 +277,12 @@ TextureImporter:
       name: JUMP ATTACK (FLAMING SWORD)_5
       rect:
         serializedVersion: 2
-        x: 1101
-        y: 63
-        width: 15
-        height: 16
+        x: 640
+        y: 23
+        width: 128
+        height: 85
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -299,12 +299,12 @@ TextureImporter:
       name: JUMP ATTACK (FLAMING SWORD)_6
       rect:
         serializedVersion: 2
-        x: 1116
-        y: 69
-        width: 8
-        height: 10
+        x: 768
+        y: 4
+        width: 128
+        height: 82
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -321,12 +321,12 @@ TextureImporter:
       name: JUMP ATTACK (FLAMING SWORD)_7
       rect:
         serializedVersion: 2
-        x: 1208
-        y: 9
-        width: 63
-        height: 63
+        x: 896
+        y: 0
+        width: 128
+        height: 78
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -343,12 +343,12 @@ TextureImporter:
       name: JUMP ATTACK (FLAMING SWORD)_8
       rect:
         serializedVersion: 2
-        x: 22
-        y: 11
-        width: 67
-        height: 47
+        x: 1024
+        y: 0
+        width: 128
+        height: 78
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -365,12 +365,12 @@ TextureImporter:
       name: JUMP ATTACK (FLAMING SWORD)_9
       rect:
         serializedVersion: 2
-        x: 149
-        y: 11
-        width: 68
-        height: 46
+        x: 1152
+        y: 0
+        width: 128
+        height: 78
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -387,12 +387,12 @@ TextureImporter:
       name: JUMP ATTACK (FLAMING SWORD)_10
       rect:
         serializedVersion: 2
-        x: 277
-        y: 11
-        width: 69
-        height: 45
+        x: 1280
+        y: 0
+        width: 128
+        height: 78
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -405,165 +405,11 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
-    - serializedVersion: 2
-      name: JUMP ATTACK (FLAMING SWORD)_11
-      rect:
-        serializedVersion: 2
-        x: 405
-        y: 11
-        width: 71
-        height: 42
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 2da2faf5701b56f80800000000000000
-      internalID: -8113884508409877806
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: JUMP ATTACK (FLAMING SWORD)_12
-      rect:
-        serializedVersion: 2
-        x: 1080
-        y: 9
-        width: 65
-        height: 43
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 567f0c296fe3c9380800000000000000
-      internalID: -8963219929629132955
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: JUMP ATTACK (FLAMING SWORD)_13
-      rect:
-        serializedVersion: 2
-        x: 1121
-        y: 48
-        width: 13
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 3d99c12fac9aa8170800000000000000
-      internalID: 8181538362182375891
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: JUMP ATTACK (FLAMING SWORD)_14
-      rect:
-        serializedVersion: 2
-        x: 1135
-        y: 51
-        width: 10
-        height: 17
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 02cf80ba08611be50800000000000000
-      internalID: 6823259652324129824
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: JUMP ATTACK (FLAMING SWORD)_15
-      rect:
-        serializedVersion: 2
-        x: 1336
-        y: 9
-        width: 66
-        height: 57
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 035fc1cda763d2c20800000000000000
-      internalID: 3183260412927604016
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: JUMP ATTACK (FLAMING SWORD)_16
-      rect:
-        serializedVersion: 2
-        x: 623
-        y: 43
-        width: 8
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 24cf500943d0c6f30800000000000000
-      internalID: 4570042241279982658
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: JUMP ATTACK (FLAMING SWORD)_17
-      rect:
-        serializedVersion: 2
-        x: 1255
-        y: 34
-        width: 7
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: cc54f9ea8507846d0800000000000000
-      internalID: -3006029225080699444
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: abb0df743cac24807b4741508765a4e3
     internalID: 0
     vertices: []
     indices: 
@@ -571,18 +417,13 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":11.0,"y":1.0},"gridSpriteSize":{"x":128.0,"y":78.0},"gridSpriteOffset":{"x":0.0,"y":30.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
       JUMP ATTACK (FLAMING SWORD)_0: 1206272633758606255
       JUMP ATTACK (FLAMING SWORD)_1: -6849954436397086255
       JUMP ATTACK (FLAMING SWORD)_10: -8542265548598083080
-      JUMP ATTACK (FLAMING SWORD)_11: -8113884508409877806
-      JUMP ATTACK (FLAMING SWORD)_12: -8963219929629132955
-      JUMP ATTACK (FLAMING SWORD)_13: 8181538362182375891
-      JUMP ATTACK (FLAMING SWORD)_14: 6823259652324129824
-      JUMP ATTACK (FLAMING SWORD)_15: 3183260412927604016
-      JUMP ATTACK (FLAMING SWORD)_16: 4570042241279982658
-      JUMP ATTACK (FLAMING SWORD)_17: -3006029225080699444
       JUMP ATTACK (FLAMING SWORD)_2: 9100090174806568455
       JUMP ATTACK (FLAMING SWORD)_3: 8970324027725094094
       JUMP ATTACK (FLAMING SWORD)_4: -7988759081085114776

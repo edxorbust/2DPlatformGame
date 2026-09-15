@@ -67,6 +67,9 @@ public class PlayerController : MonoBehaviour
     public float stunDuration = 1.5f; // Tiempo que el jugador queda vulnerable
     public PlayerStunnedState StunnedState { get; private set; }
     public bool isStunned = false;
+    public bool beingPushed = false;
+    public bool pushedUp = false;
+    public float hurtAndPushDirection;
 
     [Header("Jump Game Feel")]
     public float defaultGravity = 2f; 

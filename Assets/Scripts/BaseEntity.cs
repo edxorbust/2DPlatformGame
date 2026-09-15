@@ -24,6 +24,9 @@ public class BaseEntity : MonoBehaviour
     public bool IsParrying { get; set; } // Bandera para saber si está en postura de parry
     public bool IsBlocking { get; set; }
     public bool IsDashing { get; set; }
+    public bool HasSecondPhase = false;
+    public bool InSecondPhase = false;
+    public float secondPhaseStatsMultiplier = 1.5f;
 
     public int ActualHealth { get; private set;}
 
@@ -116,6 +119,16 @@ public class BaseEntity : MonoBehaviour
                     Die();
                     return;
                 }
+                if (finisherLimit <= 1 && HasSecondPhase)
+                {
+                    InSecondPhase = true;
+                    ActualHealth = maximunHealth * 3;
+                    EnemyController enemy = GetComponent<EnemyController>();
+                    enemy.attackDamage = (int)(enemy.attackDamage * secondPhaseStatsMultiplier);
+                    enemy.StartSecondPhase();
+                    RestartPosture();
+                    return;
+                }
                 ActualHealth = maximunHealth;
                 RestartPosture();
             }
@@ -186,7 +199,15 @@ public class BaseEntity : MonoBehaviour
             Die();
             return;
         }
-
+        if (finisherLimit <= 1 && HasSecondPhase)
+        {
+            InSecondPhase = true;
+            ActualHealth = maximunHealth * 3;
+            EnemyController enemy = GetComponent<EnemyController>();
+            enemy.attackDamage = (int)(enemy.attackDamage * secondPhaseStatsMultiplier);
+            RestartPosture();
+            return;
+        }
         RestartPosture();
     }
 
