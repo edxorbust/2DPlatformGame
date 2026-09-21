@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 8292532652288602179}
   - component: {fileID: 4968983764900913423}
   - component: {fileID: 2102660201156522718}
+  - component: {fileID: 2762416404529550658}
   m_Layer: 10
   m_Name: TrapPlatform
   m_TagString: Untagged
@@ -31,7 +32,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 80.7, y: 32.42, z: 0}
-  m_LocalScale: {x: 1.5, y: 1, z: 1}
+  m_LocalScale: {x: 1.6413403, y: 1.0942268, z: 1.0942268}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -83,7 +84,7 @@ SpriteRenderer:
   m_SortingLayerID: 451174827
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: -1733994665, guid: 8a9ab7cc77f514deebe32de8f9dc69af, type: 3}
+  m_Sprite: {fileID: -5924881813626463960, guid: e1a871bd661bb4b569e62b547150c1b8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -155,17 +156,17 @@ BoxCollider2D:
   m_UsedByEffector: 1
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0.2187357}
+  m_Offset: {x: -0.018496752, y: -0.076058224}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 0.5}
+    oldSize: {x: 3, y: 1}
     newSize: {x: 1, y: 0.5}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 0.06252861}
+  m_Size: {x: 0.9630065, y: 0.3469191}
   m_EdgeRadius: 0
 --- !u!251 &4968983764900913423
 PlatformEffector2D:
@@ -200,6 +201,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlataformaModular
   tipoDePlataforma: 2
   velocidad: 3
+  velocidadRapida: 5
   puntoDestino: {fileID: 0}
-  tiempoParaCaer: 2
+  tiempoParaCaer: 0.2
   tiempoParaReaparecer: 3
+  velocidadGuardada: 0
+--- !u!95 &2762416404529550658
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8801619226243550399}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 629dd4c410c814a0e885d1bff71cee82, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

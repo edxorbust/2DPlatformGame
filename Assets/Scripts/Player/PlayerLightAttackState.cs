@@ -100,14 +100,14 @@ public class PlayerLightAttackState : BaseState
 
     public override void PhysicsUpdate()
     {
-        float inerciaPlataformaX = 0f;
+        
         if (player.PlataformaActual != null)
         {
-            inerciaPlataformaX = player.PlataformaActual.VelocidadActual.x;
+            float inerciaPlataformaX = player.PlataformaActual.VelocidadActual.x;
+            player.Rb.linearVelocity = new Vector2(inerciaPlataformaX, player.Rb.linearVelocity.y);
         }
 
         // 3. Aplicamos ambas velocidades sumadas, respetando la gravedad en Y
-        player.Rb.linearVelocity = new Vector2(inerciaPlataformaX, player.Rb.linearVelocity.y);
     }
 
     public override void Exit()

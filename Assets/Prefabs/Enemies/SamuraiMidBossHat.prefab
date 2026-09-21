@@ -167,7 +167,7 @@ CapsuleCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -209,6 +209,9 @@ MonoBehaviour:
   timeUntilPostureRecovery: 4
   actualTimeRemainingforRecovery: 0
   maximunHealth: 100
+  HasSecondPhase: 0
+  InSecondPhase: 0
+  secondPhaseStatsMultiplier: 1.5
 --- !u!114 &7637244155169275910
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -254,6 +257,8 @@ MonoBehaviour:
   blockKnockbackForce: 2
   isBlocking: 0
   blockTime: 1
+  inmuneToAttacks: 0
+  touchDamageActivated: 1
   arenaDelJefe: {fileID: 0}
   lightHitStopDuration: 0.07
   hitSparkPrefab: {fileID: 8769942275986818781, guid: 44cff9bd8c12e4955a6fd14c3e7f4e71, type: 3}
@@ -460,9 +465,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4271092955731336353}
-  - component: {fileID: 2640412255056928843}
+  - component: {fileID: 5573302495585011582}
+  - component: {fileID: 3627577711183276215}
   m_Layer: 0
-  m_Name: DamageSensor
+  m_Name: TouchDamage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -483,14 +489,14 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4383641811933948107}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!70 &2640412255056928843
+--- !u!70 &5573302495585011582
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5427493547151435429}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
@@ -517,9 +523,21 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.013414383, y: -0.000000059604645}
-  m_Size: {x: 0.34439087, y: 0.95707333}
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 0.5, y: 1}
   m_Direction: 0
+--- !u!114 &3627577711183276215
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5427493547151435429}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71c036fa4434e4117ba49e607c5aaec0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyTouchDamage
 --- !u!1 &5752097255617294261
 GameObject:
   m_ObjectHideFlags: 0

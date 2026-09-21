@@ -16,10 +16,10 @@ MonoBehaviour:
   - sequenceName: Combo1
     moves: 00000000
   - sequenceName: Combo2
-    moves: 0000000001000000
+    moves: 0000000002000000
   - sequenceName: Combo3
-    moves: 01000000
+    moves: 02000000
   - sequenceName: Combo4
     moves: 00000000
   - sequenceName: Combo4
-    moves: 0100000000000000
+    moves: 0200000000000000

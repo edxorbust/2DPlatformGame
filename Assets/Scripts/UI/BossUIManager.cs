@@ -11,6 +11,7 @@ public class BossUIManager : MonoBehaviour
     [Header("Barras de UI")]
     public Image healthBarFill;
     public Image postureBarFill;
+    private bool uiActive;
     
     [Header("Sistema de Finisher (Vidas)")]
     public GameObject finisherIconPrefab;    // Arrastra aquí el prefab de tu icono (una Image)
@@ -21,15 +22,10 @@ public class BossUIManager : MonoBehaviour
 
     private float maxHealth;
     private float maxPosture;
-    private bool hasFightStarted = false;
+    public bool hasFightStarted = false;
 
     private void Start()
     {
-        if (boss != null && boss.Health != null)
-        {
-            maxHealth = boss.Health.maximunHealth;
-            maxPosture = boss.Health.maximumPosture;
-        }
 
         // Apagamos la interfaz del jefe al inicio del nivel
         if (bossUIContainer != null)
@@ -43,11 +39,12 @@ public class BossUIManager : MonoBehaviour
         if (boss == null || boss.Health == null) return;
 
         // 1. ¿El Jefe ya nos vio y empezó la pelea?
-        if (!hasFightStarted && boss.StateMachine.CurrentState != boss.IdleState)
+        if (hasFightStarted && !uiActive)
         {
-            hasFightStarted = true;
+            maxHealth = boss.Health.maximunHealth;
+            maxPosture = boss.Health.maximumPosture;
             if (bossUIContainer != null) bossUIContainer.SetActive(true);
-            
+            uiActive = true;
             // Generamos los iconos justo cuando empieza el combate
             GenerarIconos(boss.Health.finisherLimit);
         }
@@ -56,12 +53,13 @@ public class BossUIManager : MonoBehaviour
         if (hasFightStarted && boss.StateMachine.CurrentState == boss.DeathState)
         {
             if (bossUIContainer != null) bossUIContainer.SetActive(false);
+            uiActive = false;
             hasFightStarted = false; 
             return;
         }
 
         // 3. Actualizar la barra y los iconos durante la pelea
-        if (hasFightStarted)
+        if (uiActive)
         {
             healthBarFill.fillAmount = boss.Health.ActualHealth / maxHealth;
             

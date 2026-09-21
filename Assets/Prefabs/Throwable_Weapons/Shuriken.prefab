@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2905666068109193643}
   - component: {fileID: 1186739624909772938}
   - component: {fileID: 590811874534900801}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Shuriken
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -78,7 +78,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 1054896403
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: -4345462867533152315, guid: 84a0360a52df7437a8b5622986158fb9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -108,4 +108,5 @@ MonoBehaviour:
     m_Bits: 192
   velocidad: 7
   fromDirection: 0
+  lifeTime: 4
   velocidadRotacion: 1080

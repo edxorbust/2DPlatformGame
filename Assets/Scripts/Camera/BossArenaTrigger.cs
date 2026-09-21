@@ -11,12 +11,19 @@ public class BossArenaTrigger : MonoBehaviour
 
     private bool arenaActivada = false;
 
+    [Header("UI")]
+    public GameObject canvas;
+    public GameObject boss;
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         // Si el jugador entra y la arena no se ha activado aún
         if (collision.CompareTag("Player") && !arenaActivada)
         {
             arenaActivada = true;
+            BossUIManager uiManager = canvas.GetComponent<BossUIManager>();
+            uiManager.boss = boss.GetComponent<EnemyController>();
+            uiManager.hasFightStarted = true;
             IniciarPeleaDeJefe();
         }
     }

@@ -48,6 +48,7 @@ GameObject:
   - component: {fileID: 5519938762292605295}
   - component: {fileID: 8004689593570578268}
   - component: {fileID: 5229370349439738772}
+  - component: {fileID: 7009754267518598278}
   m_Layer: 7
   m_Name: TwoSwordEnemy
   m_TagString: Enemy
@@ -72,6 +73,7 @@ Transform:
   - {fileID: 5989353686629295818}
   - {fileID: 8772940475627361898}
   - {fileID: 6447178188046762579}
+  - {fileID: 7668504255461020562}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &7288301200179898303
@@ -197,7 +199,7 @@ CapsuleCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -239,6 +241,9 @@ MonoBehaviour:
   timeUntilPostureRecovery: 4
   actualTimeRemainingforRecovery: 0
   maximunHealth: 60
+  HasSecondPhase: 0
+  InSecondPhase: 0
+  secondPhaseStatsMultiplier: 1.5
 --- !u!114 &5519938762292605295
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -255,9 +260,9 @@ MonoBehaviour:
   playerTarget: {fileID: 0}
   capaObstaculosVision:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 72
   moveSpeed: 3
-  detectionRange: 7
+  detectionRange: 5
   attackRange: 1.35
   longAttackRange: 2
   isFlyingEnemy: 0
@@ -284,6 +289,8 @@ MonoBehaviour:
   blockKnockbackForce: 1.5
   isBlocking: 0
   blockTime: 1
+  inmuneToAttacks: 0
+  touchDamageActivated: 1
   arenaDelJefe: {fileID: 0}
   lightHitStopDuration: 0.07
   hitSparkPrefab: {fileID: 8769942275986818781, guid: 44cff9bd8c12e4955a6fd14c3e7f4e71, type: 3}
@@ -419,6 +426,43 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FlashEffectDamage
   materialBlanco: {fileID: 2100000, guid: 3e59e506059e94882b413adf90f6a3c4, type: 2}
   duracionFlasheo: 0.1
+--- !u!70 &7009754267518598278
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1776292554743281358}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0.006533146, y: -0.019598484}
+  m_Size: {x: 0.60899067, y: 1.2100091}
+  m_Direction: 0
 --- !u!1 &2333006115509893083
 GameObject:
   m_ObjectHideFlags: 0
@@ -481,6 +525,88 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4164957131779030284}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6626156852050741706
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7668504255461020562}
+  - component: {fileID: 6171607288909819647}
+  - component: {fileID: 4428415718320623497}
+  m_Layer: 0
+  m_Name: TouchDamage
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7668504255461020562
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6626156852050741706}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4164957131779030284}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!70 &6171607288909819647
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6626156852050741706}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: -0.0000019073486, y: -0.04577446}
+  m_Size: {x: 0.56103134, y: 1.0915489}
+  m_Direction: 0
+--- !u!114 &4428415718320623497
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6626156852050741706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71c036fa4434e4117ba49e607c5aaec0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyTouchDamage
 --- !u!1 &7662278257423598385
 GameObject:
   m_ObjectHideFlags: 0
@@ -506,7 +632,7 @@ Transform:
   m_GameObject: {fileID: 7662278257423598385}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.83, y: -0.592, z: 0}
+  m_LocalPosition: {x: 1.18, y: -0.592, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

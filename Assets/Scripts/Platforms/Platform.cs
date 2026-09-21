@@ -33,6 +33,8 @@ public class PlataformaModular : MonoBehaviour
     private Animator anim; 
     private bool regresoActivado = false;
     public float velocidadGuardada;
+    private Coroutine shakeCoroutine;
+
 
     private void Start()
     {
@@ -133,9 +135,45 @@ public class PlataformaModular : MonoBehaviour
             jugadorEncima = true;
             if (tipoDePlataforma == TipoPlataforma.CaidaTemporal && !cayendo)
             {
+                
                 StartCoroutine(RutinaCaida());
             }
         }
+    }
+
+    public void StartShake(float duration = 0.8f)
+    {
+        if (shakeCoroutine != null)
+            StopCoroutine(shakeCoroutine);
+
+        shakeCoroutine = StartCoroutine(ShakeRoutine(duration));
+    }
+
+    private IEnumerator ShakeRoutine(float duration)
+    {
+        Vector3 originalPosition = transform.position;
+
+        float elapsed = 0f;
+
+        float pixel = 1f / 32f;
+
+        while (elapsed < duration)
+        {
+            int x = Random.Range(-1, 2);
+            int y = Random.Range(-1, 2);
+
+            transform.position =
+                originalPosition +
+                new Vector3(x * pixel, y * pixel, 0f);
+
+            elapsed += Time.deltaTime;
+
+            yield return null;
+        }
+
+        transform.position = originalPosition;
+
+        shakeCoroutine = null;
     }
 
     private void OnCollisionExit2D(Collision2D collision)
@@ -146,7 +184,10 @@ public class PlataformaModular : MonoBehaviour
     private IEnumerator RutinaCaida()
     {
         cayendo = true;
-        if (anim != null) anim.SetTrigger("Temblar");
+        float shakeDuration = 1.8f;
+        StartShake(shakeDuration);
+        yield return new WaitForSeconds(shakeDuration);
+        anim.Play("Destroy");
         yield return new WaitForSeconds(tiempoParaCaer);
 
         jugadorEncima = false;
@@ -161,7 +202,8 @@ public class PlataformaModular : MonoBehaviour
             colisionador.enabled = true;
             renderizador.enabled = true;
             cayendo = false;
-            if (anim != null) anim.SetTrigger("Reaparecer");
+            anim.Play("Idle");
+            //if (anim != null) anim.SetTrigger("Reaparecer");
         }
     }
 }

@@ -16,4 +16,4 @@ MonoBehaviour:
   - sequenceName: Combo1
     moves: 04000000
   - sequenceName: Combo2
-    moves: 03000000
+    moves: 05000000

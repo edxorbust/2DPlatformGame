@@ -19,6 +19,7 @@ public class EnemyDashAttackState : BaseState
         enemy.unBlockableAttacking = true;
         damageGiven = false;
         enemy.cannotBeInterrupted = true;
+        enemy.touchDamageActivated = false;
         enemy.Animator.Play("DashAttack");
         if (enemy.undodgableAttackSign != null)
         {
@@ -113,6 +114,7 @@ public class EnemyDashAttackState : BaseState
         enemy.unBlockableAttacking = false;
         enemy.isAttackingFar = false;
         enemy.cannotBeInterrupted = false;
+        enemy.touchDamageActivated = true;
         damageGiven = false;
     }
 }

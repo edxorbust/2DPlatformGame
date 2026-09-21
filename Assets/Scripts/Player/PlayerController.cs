@@ -672,7 +672,7 @@ public class PlayerController : MonoBehaviour
             
             // DOWNCASTING: Leemos la fuerza de retroceso si es un espadachín
             SwordsmanController swordsman = attacker.GetComponent<SwordsmanController>();
-            HurtState.hitDirection = pushDirection;
+            hurtAndPushDirection = pushDirection;
             HurtState.swordsman = swordsman; 
         }
         StateMachine.ChangeState(HurtState);

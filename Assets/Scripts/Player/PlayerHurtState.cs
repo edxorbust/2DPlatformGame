@@ -50,15 +50,13 @@ public class PlayerHurtState : BaseState // O el nombre que tenga tu clase base
         else
         {
             player.Animator.Play("Hurt");
-            // APLICAMOS EL KNOCKBACK AL JUGADOR
             // if (player.Rb != null)
             // {
             //     // Si el enemigo está a la derecha, nos empuja a la izquierda (-1), y viceversa (1)
                 
             //     // DOWNCASTING: Leemos la fuerza de retroceso si es un espadachín
-            //     float force = swordsman != null ? swordsman.blockKnockbackForce : 2f;
 
-            //     player.Rb.linearVelocity = new Vector2(hitDirection * force, player.Rb.linearVelocity.y);
+            //     player.Rb.linearVelocity = new Vector2(hitDirection * 2f, player.Rb.linearVelocity.y);
             // }
         }
         // 3. Consumimos cualquier input que el jugador haya presionado por pánico

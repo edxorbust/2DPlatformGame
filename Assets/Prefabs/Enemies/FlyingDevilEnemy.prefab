@@ -64,6 +64,88 @@ Transform:
   - {fileID: 9017731895470253097}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6142207640187922375
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 729619335871167593}
+  - component: {fileID: 7407055505836013253}
+  - component: {fileID: 3203930773263771827}
+  m_Layer: 7
+  m_Name: TouchDamage
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &729619335871167593
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6142207640187922375}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2907217569344165585}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!70 &7407055505836013253
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6142207640187922375}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0.010600348, y: 0.0043129916}
+  m_Size: {x: 2.5133169, y: 1.7786535}
+  m_Direction: 1
+--- !u!114 &3203930773263771827
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6142207640187922375}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71c036fa4434e4117ba49e607c5aaec0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyTouchDamage
 --- !u!1 &8412261855482790724
 GameObject:
   m_ObjectHideFlags: 0
@@ -100,7 +182,8 @@ Transform:
   m_LocalPosition: {x: 0.36, y: -0.19, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 729619335871167593}
   m_Father: {fileID: 2431247568505673763}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!212 &8028795113263818967
@@ -226,7 +309,7 @@ CapsuleCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -268,6 +351,9 @@ MonoBehaviour:
   timeUntilPostureRecovery: 2.5
   actualTimeRemainingforRecovery: 0
   maximunHealth: 10
+  HasSecondPhase: 0
+  InSecondPhase: 0
+  secondPhaseStatsMultiplier: 1.5
 --- !u!82 &4991964410803389713
 AudioSource:
   m_ObjectHideFlags: 0
@@ -424,6 +510,8 @@ MonoBehaviour:
   blockKnockbackForce: 2
   isBlocking: 0
   blockTime: 1
+  inmuneToAttacks: 0
+  touchDamageActivated: 1
   arenaDelJefe: {fileID: 0}
   lightHitStopDuration: 0.07
   hitSparkPrefab: {fileID: 8769942275986818781, guid: 44cff9bd8c12e4955a6fd14c3e7f4e71, type: 3}

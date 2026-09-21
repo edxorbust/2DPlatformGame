@@ -56,6 +56,7 @@ public class EnemyController : MonoBehaviour
     public bool isBlocking;
     public float blockTime = 1f;
     public bool inmuneToAttacks = false;
+    public bool touchDamageActivated = true;
 
     [Header("Arena del Jefe (Opcional)")]
     public BossArenaTrigger arenaDelJefe;
@@ -264,20 +265,6 @@ public class EnemyController : MonoBehaviour
     public virtual void AnimationEvent_WindupFinished()
     {
         StateMachine.CurrentState.WindupFinishedTrigger();
-    }
-
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Player"))
-        {
-            PlayerController player = collision.GetComponent<PlayerController>();
-            if (player != null && player.StateMachine.CurrentState != player.HurtState)
-            {
-                player.GetAttack(contactDamage, transform);
-                float direccionEmpuje = (player.transform.position.x > transform.position.x) ? 1f : -1f;
-                player.Rb.linearVelocity = new Vector2(direccionEmpuje * knockbackForceHurt, player.Rb.linearVelocity.y);
-            }
-        }
     }
 
     public void ReproducirSonido(AudioClip audio) => bocinaSFX.PlayOneShot(audio);

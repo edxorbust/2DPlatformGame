@@ -39,12 +39,14 @@ public class EnemyChaseState : BaseState
             if (!enemy.IsThereGroundNext())
             {
                 enemy.StateMachine.ChangeState(enemy.IdleState);
+                return;
             }
         }
 
         if (distance > enemy.detectionRange)
         {
             enemy.StateMachine.ChangeState(enemy.IdleState);
+            return;
         }
         
         if (!enemy.isFlyingEnemy && !enemy.isRangeEnemy && enemy.CanSeePlayer())
@@ -65,6 +67,7 @@ public class EnemyChaseState : BaseState
                 else
                 {
                     enemy.StateMachine.ChangeState(enemy.IdleState);
+                    return;
                 }
             }
 

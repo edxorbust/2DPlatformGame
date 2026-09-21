@@ -103,6 +103,7 @@ Transform:
   - {fileID: 7294537808136948013}
   - {fileID: 4025365131318640181}
   - {fileID: 3936041547676952306}
+  - {fileID: 5668160073478813605}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &6337187620305387405
@@ -228,7 +229,7 @@ CapsuleCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -270,6 +271,9 @@ MonoBehaviour:
   timeUntilPostureRecovery: 4
   actualTimeRemainingforRecovery: 0
   maximunHealth: 50
+  HasSecondPhase: 0
+  InSecondPhase: 0
+  secondPhaseStatsMultiplier: 1.5
 --- !u!114 &6479238086244828491
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -286,7 +290,7 @@ MonoBehaviour:
   playerTarget: {fileID: 0}
   capaObstaculosVision:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   moveSpeed: 3
   detectionRange: 7
   attackRange: 1.4
@@ -315,6 +319,7 @@ MonoBehaviour:
   blockKnockbackForce: 1.5
   isBlocking: 0
   blockTime: 1
+  inmuneToAttacks: 0
   arenaDelJefe: {fileID: 0}
   lightHitStopDuration: 0.07
   hitSparkPrefab: {fileID: 8769942275986818781, guid: 44cff9bd8c12e4955a6fd14c3e7f4e71, type: 3}
@@ -450,6 +455,88 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FlashEffectDamage
   materialBlanco: {fileID: 2100000, guid: 3e59e506059e94882b413adf90f6a3c4, type: 2}
   duracionFlasheo: 0.1
+--- !u!1 &6578538344512410825
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5668160073478813605}
+  - component: {fileID: 6508969705632193881}
+  - component: {fileID: 6970737891154418773}
+  m_Layer: 0
+  m_Name: TouchDamage
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5668160073478813605
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6578538344512410825}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5891618788813919433}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!70 &6508969705632193881
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6578538344512410825}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0.02579701, y: -0.27860823}
+  m_Size: {x: 0.5103185, y: 0.87617415}
+  m_Direction: 0
+--- !u!114 &6970737891154418773
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6578538344512410825}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71c036fa4434e4117ba49e607c5aaec0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyTouchDamage
 --- !u!1 &8570871875234925942
 GameObject:
   m_ObjectHideFlags: 0
@@ -506,7 +593,7 @@ Transform:
   m_GameObject: {fileID: 8821561570554477295}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.98, y: -0.75, z: 0}
+  m_LocalPosition: {x: 1.69, y: -0.75, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
