@@ -16,6 +16,7 @@ public class PlayerDashState : BaseState
         Debug.Log("Entering Dash State");
         
         // Consumimos el input y marcamos el tiempo en el que se hizo el dash
+        player.inmuneToAttacks = true;
         player.DashInput = false;
         player.LastDashTime = Time.time;
         dashTimer = player.dashDuration;
@@ -60,6 +61,7 @@ public class PlayerDashState : BaseState
     public override void Exit()
     {
         // IMPORTANTE: Restauramos la gravedad, apagamos los I-frames y frenamos al jugador
+        player.inmuneToAttacks = false;
         player.Rb.gravityScale = originalGravity;
         player.Health.IsDashing = false;
         player.Rb.linearVelocity = new Vector2(0f, player.Rb.linearVelocity.y);

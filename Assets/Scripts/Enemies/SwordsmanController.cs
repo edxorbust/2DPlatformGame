@@ -146,6 +146,10 @@ public class SwordsmanController : EnemyController
     // OVERRIDE: Interceptamos el ataque ANTES de que el padre quite vida
     public override void GetAttack(int quantityDamage, Transform attacker, bool isThrowAttack=false, float directionThrowAttack=1.0f)
     {
+        if (inmuneToAttacks)
+        {
+            return;
+        }
         if (isBlocking)
         {
             ReproducirSonido(blockSound);

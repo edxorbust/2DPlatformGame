@@ -86,6 +86,7 @@ public class EnemyController : MonoBehaviour
     public EnemyAttackState AttackState { get; private set; } // ¡Se queda aquí!
     public EnemyHeavyAttackState HeavyAttackState { get; private set; }
     public EnemyStunnedState StunnedState { get; private set; }
+    public EnemyShortStunState ShortStunState { get; private set; }
     public EnemyDeathState DeathState { get; private set; }
     public EnemyHurtState HurtState { get; private set; }
     public EnemyFallState FallState { get; private set; }
@@ -105,6 +106,7 @@ public class EnemyController : MonoBehaviour
         AttackState = new EnemyAttackState(this);
         HeavyAttackState = new EnemyHeavyAttackState(this);
         StunnedState = new EnemyStunnedState(this);
+        ShortStunState = new EnemyShortStunState(this);
         DeathState = new EnemyDeathState(this);
         HurtState = new EnemyHurtState(this);
         FallState = new EnemyFallState(this);

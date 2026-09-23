@@ -308,7 +308,7 @@ MonoBehaviour:
   postureDamageOnParried: 20
   dashForce: 15
   attackProfile: {fileID: 11400000, guid: 3cfff954f184943caab21d429ce63cf4, type: 2}
-  parryChance: 0.9
+  parryChance: 0.5
   blockChance: 0.1
   hitSparkParryPrefab: {fileID: 1105000609644290833, guid: 08dd73b058cd040a8a8ec2daa7cde530, type: 3}
   parrySound: {fileID: 8300000, guid: 753d8f0de4722411abcacd2db7d50cb4, type: 3}

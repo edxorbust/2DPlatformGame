@@ -99,6 +99,10 @@ public class ArcherController : EnemyController
 
     public override void GetAttack(int quantityDamage, Transform attacker, bool isThrowAttack = false, float directionThrowAttack = 1.0f)
     {
+        if (inmuneToAttacks)
+        {
+            return;
+        }
         if (isBlocking) 
         {
             ReproducirSonido(blockSound); 

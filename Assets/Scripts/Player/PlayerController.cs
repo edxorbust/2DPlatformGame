@@ -54,6 +54,7 @@ public class PlayerController : MonoBehaviour
     public int comboStep = 0;
     public int throwableWeaponLimit = 3;
     public int throwableWeaponCounter;
+    public bool inmuneToAttacks = false;
 
     [Header("Defensive Stats")]
     public float parryDuration = 0.5f; // La "Ventana" de tiempo perfecta (muy corta)
@@ -587,11 +588,15 @@ public class PlayerController : MonoBehaviour
     // NUEVO MÉTODO: El Jugador procesa los golpes que recibe
     public void GetAttack(int quantityDamage, Transform attacker)
     {
+        if (StateMachine.CurrentState == HurtState || inmuneToAttacks)
+        {
+            return;
+        }
         EnemyController attackerBaseComponent = attacker.GetComponent<EnemyController>();
         // 1. PARRY PERFECTO
         if (Health.IsParrying && !attackerBaseComponent.unParryableAttacking)
         {
-            Debug.Log("Jugador: ¡REESCRIBIÓ EL TIEMPO! Parry perfecto.");
+            
             if (hitSparkParryPrefab != null)
             {
                 // Instanciamos el chispazo. Puedes sumarle un pequeño Offset a enemigoTransform.position 
@@ -613,6 +618,11 @@ public class PlayerController : MonoBehaviour
             Animator.Play("Parry");
             // Le mandamos un estímulo a EntidadBase para que dispare eventos de sonido/partículas
             Health.Damage(0); 
+            float pushDirection = (attacker.localScale.x < transform.localScale.x) ? 1f : -1f;
+            Debug.Log(pushDirection);
+            Debug.Log("Parry exitoso, enemigo retrocede.");
+            
+
 
             // Dañamos la postura del atacante (Enemigo)
             BaseEntity saludAtacante = attacker.GetComponent<BaseEntity>();
@@ -623,10 +633,13 @@ public class PlayerController : MonoBehaviour
                 
                 // Si es espadachín leemos su variable, si no (ej. es una bestia), usamos 50 por defecto
                 int postureDamage = swordsman != null ? swordsman.postureDamageOnParried : 50;
-                
+                if (swordsman != null)
+                {
+                    attackerBaseComponent.StateMachine.ChangeState(attackerBaseComponent.ShortStunState);
+                    attackerBaseComponent.Rb.linearVelocity = new Vector2(pushDirection*1f, Rb.linearVelocity.y);
+                }
                 saludAtacante.PostureDamage(postureDamage);
             }
-
             return; // No recibe daño ni retroceso
         }
 
@@ -643,10 +656,8 @@ public class PlayerController : MonoBehaviour
             // APLICAMOS EL KNOCKBACK AL JUGADOR
             if (Rb != null)
             {
-                Debug.Log("Se esta aplicando knockback");
                 // Si el enemigo está a la derecha, nos empuja a la izquierda (-1), y viceversa (1)
                 float pushDirection = (transform.localScale.x < attacker.localScale.x) ? 1f : -1f;
-                Debug.Log(pushDirection);
                 // DOWNCASTING: Leemos la fuerza de retroceso si es un espadachín
                 SwordsmanController swordsman = attacker.GetComponent<SwordsmanController>();
                 float force = swordsman != null ? swordsman.blockKnockbackForce : 2f;

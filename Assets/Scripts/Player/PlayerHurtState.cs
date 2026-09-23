@@ -6,7 +6,8 @@ public class PlayerHurtState : BaseState // O el nombre que tenga tu clase base
     public float hitDirection;
     public SwordsmanController swordsman;
     private float timeBeingPushed = 0.5f;
-    private float actualTimePushed;
+    private float maxHurtTime = 0.16f;
+    private float timer;
 
     public PlayerHurtState(PlayerController playerContext)
     {
@@ -16,20 +17,16 @@ public class PlayerHurtState : BaseState // O el nombre que tenga tu clase base
     public override void Enter()
     {
         
-
-        // 2. Frenamos al personaje para que no resbale (conservando su Y por si lo golpean en el aire)
-        //player.Rb.linearVelocity = new Vector2(0f, player.Rb.linearVelocity.y);
+        player.inmuneToAttacks = true;
         hitDirection = player.hurtAndPushDirection;
         if (player.beingPushed)
         {
             Debug.Log("entrando a push");
             player.Animator.Play("Pushed");
-            actualTimePushed = timeBeingPushed;
+            timer = timeBeingPushed;
             if (player.Rb != null)
             {
-                // Si el enemigo está a la derecha, nos empuja a la izquierda (-1), y viceversa (1)
-                
-                // DOWNCASTING: Leemos la fuerza de retroceso si es un espadachín
+               
 
                 player.Rb.linearVelocity = new Vector2(hitDirection * 8f, player.Rb.linearVelocity.y);
             }
@@ -37,12 +34,10 @@ public class PlayerHurtState : BaseState // O el nombre que tenga tu clase base
         else if (player.pushedUp)
         {
             player.Animator.Play("Pushed");
-            actualTimePushed = timeBeingPushed;
+            timer = timeBeingPushed;
             if (player.Rb != null)
             {
-                // Si el enemigo está a la derecha, nos empuja a la izquierda (-1), y viceversa (1)
                 
-                // DOWNCASTING: Leemos la fuerza de retroceso si es un espadachín
 
                 player.Rb.linearVelocity = new Vector2(hitDirection * 6f, 8f);
             }
@@ -50,16 +45,10 @@ public class PlayerHurtState : BaseState // O el nombre que tenga tu clase base
         else
         {
             player.Animator.Play("Hurt");
-            // if (player.Rb != null)
-            // {
-            //     // Si el enemigo está a la derecha, nos empuja a la izquierda (-1), y viceversa (1)
-                
-            //     // DOWNCASTING: Leemos la fuerza de retroceso si es un espadachín
-
-            //     player.Rb.linearVelocity = new Vector2(hitDirection * 2f, player.Rb.linearVelocity.y);
-            // }
+            timer = maxHurtTime;
+            
         }
-        // 3. Consumimos cualquier input que el jugador haya presionado por pánico
+ 
         player.LightAttackInput = false;
         player.HeavyAttackInput = false;
         player.JumpInput = false;
@@ -67,29 +56,28 @@ public class PlayerHurtState : BaseState // O el nombre que tenga tu clase base
 
     public override void Update()
     {
-        if (player.beingPushed || player.pushedUp)
-        {
-            actualTimePushed -= Time.deltaTime;
-            if (actualTimePushed <= 0)
-            {
-                player.StateMachine.ChangeState(player.IdleState);
-            }
-        }
-    }
-
-    // Usamos el mismo método que creamos para el combo de ataques
-    public override void AnimationFinishTrigger()
-    {
-        // Cuando la animación de Hurt termine, volvemos a Idle y le devolvemos el control
-        if (player.beingPushed || player.pushedUp)
-        {
-            
-        }
-        else
+        
+        timer -= Time.deltaTime;
+        if (timer <= 0)
         {
             player.StateMachine.ChangeState(player.IdleState);
         }
+        
     }
+
+
+    // public override void AnimationFinishTrigger()
+    // {
+        
+    //     if (player.beingPushed || player.pushedUp)
+    //     {
+            
+    //     }
+    //     else
+    //     {
+    //         player.StateMachine.ChangeState(player.IdleState);
+    //     }
+    // }
 
     public override void Exit()
     {
@@ -101,5 +89,6 @@ public class PlayerHurtState : BaseState // O el nombre que tenga tu clase base
         {
             player.pushedUp = false;
         }
+        player.inmuneToAttacks = false;
     }
 }

@@ -3,6 +3,8 @@ using UnityEngine;
 public class EnemyHurtState : BaseState
 {
     private EnemyController enemy;
+    private float maxTimeHurt = 0.5f;
+    private float timer;
     
 
     public EnemyHurtState(EnemyController enemyContext)
@@ -12,7 +14,8 @@ public class EnemyHurtState : BaseState
 
     public override void Enter()
     {
-
+        timer = maxTimeHurt;
+        enemy.inmuneToAttacks = true;
         if (enemy.Health.InSecondPhase)
         {
             enemy.Animator.Play("Hurt2");
@@ -27,7 +30,11 @@ public class EnemyHurtState : BaseState
 
     public override void Update()
     {
-        
+        timer -= Time.deltaTime;
+        if (timer <= 0 && enemy.StateMachine.CurrentState == enemy.HurtState)
+        {
+            enemy.StateMachine.ChangeState(enemy.IdleState);
+        }
     }
 
     public override void PhysicsUpdate()
@@ -46,5 +53,10 @@ public class EnemyHurtState : BaseState
     {
         // Cuando la animación de Hurt termine, volvemos a Idle y le devolvemos el control
         enemy.StateMachine.ChangeState(enemy.IdleState);
+    }
+
+    public override void Exit()
+    {
+        enemy.inmuneToAttacks = false;
     }
 }

@@ -75,7 +75,7 @@ public class EnemyAttackState : BaseState
     private void Attacking()
     {
         enemy.Rb.linearVelocity = new Vector2(0f, enemy.Rb.linearVelocity.y);
-        // AQUI ESTABA EL ERROR: Cambiado a sonidoAtaque
+        
         continueAttacking = enemy.GetRandomBoolean();
         
         if (comboCounter == 1)

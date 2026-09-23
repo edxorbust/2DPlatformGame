@@ -9,6 +9,7 @@ public class PlataformaModular : MonoBehaviour
     public TipoPlataforma tipoDePlataforma;
     public float velocidad = 3f;
     public float velocidadRapida = 5f;
+    public float velocidadDeRegreso = 10f;
     
     public Transform puntoDestino; 
     
@@ -32,8 +33,8 @@ public class PlataformaModular : MonoBehaviour
     private SpriteRenderer renderizador;
     private Animator anim; 
     private bool regresoActivado = false;
-    public float velocidadGuardada;
     private Coroutine shakeCoroutine;
+    public float velocidadGuardada;
 
 
     private void Start()
@@ -45,6 +46,7 @@ public class PlataformaModular : MonoBehaviour
 
         posicionA = transform.position;
         posicionInicial = posicionA;
+        velocidadGuardada = velocidad;
 
         if (puntoDestino != null) 
         {
@@ -68,6 +70,7 @@ public class PlataformaModular : MonoBehaviour
             if (Vector2.Distance(rb.position, destinoActual) < 0.1f)
             {
                 regresoActivado = false;
+                velocidad = velocidadGuardada;
                 destinoActual = puntoDestino.position;
             }
             return;
@@ -117,7 +120,7 @@ public class PlataformaModular : MonoBehaviour
     public void RegresarAOrigen()
     {
         destinoActual = posicionInicial;
-        velocidad = velocidadGuardada;
+        velocidad = velocidadDeRegreso;
         regresoActivado = true;
 
     }
