@@ -23,6 +23,9 @@ public class PlayerController : MonoBehaviour
     public bool InteractInput {get; set; }
     public PlayerDashState DashState { get; private set; }
 
+    [Header("Abilities")]
+    public bool deflectProjectiles = false;
+
     [Header("Ground Check")]
     [SerializeField] private Transform groundCheck;          // El punto vacío que irá en los pies
     [SerializeField] private Vector2 groundCheckSize = new Vector2(0.8f, 0.2f); // El tamaño de la caja de detección
@@ -585,8 +588,23 @@ public class PlayerController : MonoBehaviour
         Time.timeScale = 1f;
     }
 
+    private void DeflectingProjectiles(Transform attacker)
+    {
+        ArcherController archer = attacker.GetComponent<ArcherController>();
+    
+        GameObject arrow = Instantiate(archer.arrowPrefab, transform.position, Quaternion.identity);
+        
+        ArrowProjectile arrowScript = arrow.GetComponent<ArrowProjectile>();
+        Vector2 position = attacker.position;
+        Vector2 direccion = (position - (Vector2)transform.position).normalized;
+        if (arrowScript != null)
+        {
+            arrowScript.Deflecting(direccion, archer.arrowSpeed, transform);
+        }
+    }
+
     // NUEVO MÉTODO: El Jugador procesa los golpes que recibe
-    public void GetAttack(int quantityDamage, Transform attacker)
+    public void GetAttack(int quantityDamage, Transform attacker, bool isProjectile = false)
     {
         if (StateMachine.CurrentState == HurtState || inmuneToAttacks)
         {
@@ -621,7 +639,11 @@ public class PlayerController : MonoBehaviour
             float pushDirection = (attacker.localScale.x < transform.localScale.x) ? 1f : -1f;
             Debug.Log(pushDirection);
             Debug.Log("Parry exitoso, enemigo retrocede.");
-            
+
+            if (deflectProjectiles && isProjectile)
+            {
+                DeflectingProjectiles(attacker);
+            }
 
 
             // Dañamos la postura del atacante (Enemigo)

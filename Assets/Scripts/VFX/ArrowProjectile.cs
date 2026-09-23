@@ -9,6 +9,7 @@ public class ArrowProjectile : MonoBehaviour
     public int damage = 10;
     public float knockbackForce = 5f;
     public float lifeTime = 4f;
+    public bool deflected;
 
     [Header("Detección de Suelo y Animación")]
     public LayerMask capaSuelo;
@@ -38,6 +39,10 @@ public class ArrowProjectile : MonoBehaviour
 
     private void Update()
     {
+        if (deflected)
+        {
+            return;
+        }
         // Solo calculamos la rotación si la flecha sigue volando (no está clavada)
         if (!isStuck && rb != null && rb.linearVelocity.sqrMagnitude > 0.1f)
         {
@@ -54,8 +59,48 @@ public class ArrowProjectile : MonoBehaviour
         rb.linearVelocity = direccion * velocidad;
     }
 
+    public void Deflecting(Vector2 direccion, float velocidad, Transform attacker1)
+    {
+        deflected = true;
+        rb.linearVelocity = direccion.normalized * velocidad;
+
+        // 2. Rotamos el sprite matemáticamente para que mire hacia donde viaja
+        float angulo = Mathf.Atan2(direccion.y, direccion.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(0, 0, angulo);
+
+        attackerTransform = attacker1;
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (deflected)
+        {
+            if (isStuck || collision.isTrigger) return;
+            if (collision.CompareTag("Enemy"))
+            {
+                ArcherController archer = collision.GetComponent<ArcherController>();
+                
+                if (archer != null && archer.StateMachine.CurrentState != archer.HurtState)
+                {
+                    Transform origenDano = (attackerTransform != null) ? attackerTransform : transform;
+                    float direccionEmpuje = (archer.transform.position.x > origenDano.position.x) ? 1f : -1f;
+                    archer.GetAttack(damage, origenDano, true, direccionEmpuje);
+                    
+                    
+                    
+                }
+                
+                // Si le da al jugador, normalmente desaparece al instante
+                deflected = false;
+                Destroy(gameObject); 
+            }
+            else if (((1 << collision.gameObject.layer) & capaSuelo) != 0)
+            {
+                deflected = false;
+                ClavarFlecha();
+            }
+            return;
+        }
         // Si ya está clavada, o choca con triggers/enemigos, ignoramos
         if (isStuck || collision.isTrigger || collision.CompareTag("Enemy")) return;
 
@@ -66,7 +111,10 @@ public class ArrowProjectile : MonoBehaviour
             if (player != null && player.StateMachine.CurrentState != player.HurtState)
             {
                 Transform origenDano = (attackerTransform != null) ? attackerTransform : transform;
-                player.GetAttack(damage, origenDano);
+
+                origenDano.GetComponent<EnemyController>().unBlockableAttacking = true;
+                player.GetAttack(damage, origenDano, true);
+                origenDano.GetComponent<EnemyController>().unBlockableAttacking = false;
                 
                 float direccionEmpuje = (player.transform.position.x > origenDano.position.x) ? 1f : -1f;
                 player.Rb.linearVelocity = new Vector2(direccionEmpuje * knockbackForce, player.Rb.linearVelocity.y);
