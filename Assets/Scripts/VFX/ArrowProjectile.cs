@@ -62,6 +62,7 @@ public class ArrowProjectile : MonoBehaviour
     public void Deflecting(Vector2 direccion, float velocidad, Transform attacker1)
     {
         deflected = true;
+        rb.gravityScale = 0f;
         rb.linearVelocity = direccion.normalized * velocidad;
 
         // 2. Rotamos el sprite matemáticamente para que mire hacia donde viaja

@@ -58,6 +58,8 @@ public class PlayerController : MonoBehaviour
     public int throwableWeaponLimit = 3;
     public int throwableWeaponCounter;
     public bool inmuneToAttacks = false;
+    private bool isInvulnerable = false;
+    private Coroutine invulnerabilityCoroutine;
 
     [Header("Defensive Stats")]
     public float parryDuration = 0.5f; // La "Ventana" de tiempo perfecta (muy corta)
@@ -85,7 +87,7 @@ public class PlayerController : MonoBehaviour
     [Header("Game Feel")]
     // 0.05 segundos es el estándar para golpes ligeros.
     // Para golpes pesados, puedes usar 0.1 o 0.15.
-    public float lightHitStopDuration = 0.5f;
+    public float lightHitStopDuration = 0.1f;
 
     [Header("Coyote Time")]
     public float coyoteTime = 0.15f; // 0.15 segundos es el estándar de la industria
@@ -146,7 +148,7 @@ public class PlayerController : MonoBehaviour
     public PlayerThrowAttackState ThrowAttackState { get; private set; }
 
     // El sistema de inputs que generamos en Unity
-    private PlayerControls controls;
+    public PlayerControls controls;
 
     public Animator Animator { get; private set; }
 
@@ -531,6 +533,49 @@ public class PlayerController : MonoBehaviour
         transform.localScale = new Vector3(-1f*transform.localScale.x, 1f, 0f);
     }
 
+    public void StartInvulnerability(float duration = 0.8f, float blinkInterval = 0.08f)
+    {
+        if (invulnerabilityCoroutine != null)
+            StopCoroutine(invulnerabilityCoroutine);
+
+        invulnerabilityCoroutine = StartCoroutine(
+            InvulnerabilityRoutine(duration, blinkInterval)
+        );
+    }
+
+    private IEnumerator InvulnerabilityRoutine(float duration, float blinkInterval)
+    {
+        isInvulnerable = true;
+
+        float elapsed = 0f;
+
+        while (elapsed < duration)
+        {
+            // Invisible
+            Color color = spriteRenderer.color;
+            color.a = 1f;
+            spriteRenderer.color = color;
+
+            yield return new WaitForSeconds(blinkInterval);
+
+            // Visible
+            color.a = 1f;
+            spriteRenderer.color = color;
+
+            yield return new WaitForSeconds(blinkInterval);
+
+            elapsed += blinkInterval * 2f;
+        }
+
+        // Aseguramos que quede visible al terminar
+        Color finalColor = spriteRenderer.color;
+        finalColor.a = 1f;
+        spriteRenderer.color = finalColor;
+
+        isInvulnerable = false;
+        invulnerabilityCoroutine = null;
+    }
+
     public void AnimationEvent_OnEnd()
     {
         // Le avisa al estado actual que su animación visual ya terminó
@@ -591,6 +636,19 @@ public class PlayerController : MonoBehaviour
     private void DeflectingProjectiles(Transform attacker)
     {
         ArcherController archer = attacker.GetComponent<ArcherController>();
+        if (archer == null)
+        {
+            FlyingEnemyController flyer = attacker.GetComponent<FlyingEnemyController>();
+            GameObject fuego = Instantiate(flyer.bolaDeFuegoPrefab, transform.position, Quaternion.identity);
+            FireBall fireballScript = fuego.GetComponent<FireBall>();
+            Vector2 position1 = attacker.position;
+            Vector2 direccion1 = (position1 - (Vector2)transform.position).normalized;
+            if (fireballScript != null)
+            {
+                fireballScript.Deflecting(direccion1, fireballScript.velocidad, transform);
+            }
+            return;
+        }
     
         GameObject arrow = Instantiate(archer.arrowPrefab, transform.position, Quaternion.identity);
         
@@ -604,91 +662,94 @@ public class PlayerController : MonoBehaviour
     }
 
     // NUEVO MÉTODO: El Jugador procesa los golpes que recibe
-    public void GetAttack(int quantityDamage, Transform attacker, bool isProjectile = false)
+    public void GetAttack(int quantityDamage, Transform attacker, bool isProjectile = false, bool isTouchDamage = false)
     {
-        if (StateMachine.CurrentState == HurtState || inmuneToAttacks)
+        if (StateMachine.CurrentState == HurtState || inmuneToAttacks || isInvulnerable)
         {
             return;
         }
         EnemyController attackerBaseComponent = attacker.GetComponent<EnemyController>();
-        // 1. PARRY PERFECTO
-        if (Health.IsParrying && !attackerBaseComponent.unParryableAttacking)
+        if (!isTouchDamage)
         {
-            
-            if (hitSparkParryPrefab != null)
+            // 1. PARRY PERFECTO
+            if (Health.IsParrying && !attackerBaseComponent.unParryableAttacking)
             {
-                // Instanciamos el chispazo. Puedes sumarle un pequeño Offset a enemigoTransform.position 
-                // si quieres que salga un poco más arriba, en el pecho y no en los pies.
-                if (!attackerBaseComponent.isFlyingEnemy && !attackerBaseComponent.isRangeEnemy)
-                {
-                    Instantiate(hitSparkParryPrefab, attackerBaseComponent.attackPoint.position, Quaternion.identity);
-                }
-                else
-                {
-                    Instantiate(hitSparkParryPrefab, transform.position, Quaternion.identity);
-                }
-            }
-            if (CameraController.Instancia != null)
-            {
-                CameraController.Instancia.AgitarCamara(0.1f, 0.04f);
-            }
-            ReproducirSonido(parrySound);
-            Animator.Play("Parry");
-            // Le mandamos un estímulo a EntidadBase para que dispare eventos de sonido/partículas
-            Health.Damage(0); 
-            float pushDirection = (attacker.localScale.x < transform.localScale.x) ? 1f : -1f;
-            Debug.Log(pushDirection);
-            Debug.Log("Parry exitoso, enemigo retrocede.");
-
-            if (deflectProjectiles && isProjectile)
-            {
-                DeflectingProjectiles(attacker);
-            }
-
-
-            // Dañamos la postura del atacante (Enemigo)
-            BaseEntity saludAtacante = attacker.GetComponent<BaseEntity>();
-            if (saludAtacante != null)
-            {
-                // DOWNCASTING: Preguntamos si el atacante es un Espadachín
-                SwordsmanController swordsman = attacker.GetComponent<SwordsmanController>();
                 
-                // Si es espadachín leemos su variable, si no (ej. es una bestia), usamos 50 por defecto
-                int postureDamage = swordsman != null ? swordsman.postureDamageOnParried : 50;
-                if (swordsman != null)
+                if (hitSparkParryPrefab != null)
                 {
-                    attackerBaseComponent.StateMachine.ChangeState(attackerBaseComponent.ShortStunState);
-                    attackerBaseComponent.Rb.linearVelocity = new Vector2(pushDirection*1f, Rb.linearVelocity.y);
+                    // Instanciamos el chispazo. Puedes sumarle un pequeño Offset a enemigoTransform.position 
+                    // si quieres que salga un poco más arriba, en el pecho y no en los pies.
+                    if (!attackerBaseComponent.isFlyingEnemy && !attackerBaseComponent.isRangeEnemy)
+                    {
+                        Instantiate(hitSparkParryPrefab, attackerBaseComponent.attackPoint.position, Quaternion.identity);
+                    }
+                    else
+                    {
+                        Instantiate(hitSparkParryPrefab, transform.position, Quaternion.identity);
+                    }
                 }
-                saludAtacante.PostureDamage(postureDamage);
+                if (CameraController.Instancia != null)
+                {
+                    CameraController.Instancia.AgitarCamara(0.1f, 0.5f);
+                }
+                ReproducirSonido(parrySound);
+                Animator.Play("Parry");
+                // Le mandamos un estímulo a EntidadBase para que dispare eventos de sonido/partículas
+                Health.Damage(0); 
+                float pushDirection = (attacker.localScale.x < transform.localScale.x) ? 1f : -1f;
+                Debug.Log(pushDirection);
+                Debug.Log("Parry exitoso, enemigo retrocede.");
+
+                if (deflectProjectiles && isProjectile)
+                {
+                    DeflectingProjectiles(attacker);
+                }
+
+
+                // Dañamos la postura del atacante (Enemigo)
+                BaseEntity saludAtacante = attacker.GetComponent<BaseEntity>();
+                if (saludAtacante != null)
+                {
+                    // DOWNCASTING: Preguntamos si el atacante es un Espadachín
+                    SwordsmanController swordsman = attacker.GetComponent<SwordsmanController>();
+                    
+                    // Si es espadachín leemos su variable, si no (ej. es una bestia), usamos 50 por defecto
+                    int postureDamage = swordsman != null ? swordsman.postureDamageOnParried : 50;
+                    if (swordsman != null)
+                    {
+                        attackerBaseComponent.StateMachine.ChangeState(attackerBaseComponent.ShortStunState);
+                        attackerBaseComponent.Rb.linearVelocity = new Vector2(pushDirection*1f, Rb.linearVelocity.y);
+                    }
+                    saludAtacante.PostureDamage(postureDamage);
+                }
+                return; // No recibe daño ni retroceso
             }
-            return; // No recibe daño ni retroceso
-        }
 
-        // 2. BLOQUEO NORMAL
-        if (Health.IsBlocking && !attackerBaseComponent.unBlockableAttacking && !attackerBaseComponent.unParryableAttacking)
-        {
-            Debug.Log("Jugador: Bloqueó el golpe y retrocede.");
-
-            // EntidadBase se encarga de restarle a la POSTURA del jugador
-            ReproducirSonido(blockSound);
-            Animator.Play("Parry");
-            Health.PostureDamage(quantityDamage/2);
-
-            // APLICAMOS EL KNOCKBACK AL JUGADOR
-            if (Rb != null)
+            // 2. BLOQUEO NORMAL
+            if (Health.IsBlocking && !attackerBaseComponent.unBlockableAttacking && !attackerBaseComponent.unParryableAttacking)
             {
-                // Si el enemigo está a la derecha, nos empuja a la izquierda (-1), y viceversa (1)
-                float pushDirection = (transform.localScale.x < attacker.localScale.x) ? 1f : -1f;
-                // DOWNCASTING: Leemos la fuerza de retroceso si es un espadachín
-                SwordsmanController swordsman = attacker.GetComponent<SwordsmanController>();
-                float force = swordsman != null ? swordsman.blockKnockbackForce : 2f;
+                Debug.Log("Jugador: Bloqueó el golpe y retrocede.");
 
-                Rb.linearVelocity = new Vector2(pushDirection * force, Rb.linearVelocity.y);
+                // EntidadBase se encarga de restarle a la POSTURA del jugador
+                ReproducirSonido(blockSound);
+                Animator.Play("Parry");
+                Health.PostureDamage(quantityDamage);
+                // APLICAMOS EL KNOCKBACK AL JUGADOR
+                if (Rb != null)
+                {
+                    // Si el enemigo está a la derecha, nos empuja a la izquierda (-1), y viceversa (1)
+                    float pushDirection = (transform.localScale.x < attacker.localScale.x) ? 1f : -1f;
+                    // DOWNCASTING: Leemos la fuerza de retroceso si es un espadachín
+                    SwordsmanController swordsman = attacker.GetComponent<SwordsmanController>();
+                    float force = swordsman != null ? swordsman.blockKnockbackForce : 2f;
+
+                    Rb.linearVelocity = new Vector2(pushDirection * force, Rb.linearVelocity.y);
+                }
+
+                return; // No pierde vida
             }
-
-            return; // No pierde vida
         }
+        
 
         Debug.Log("Dano recibido a jugador");
         // 3. DAÑO DIRECTO (Sin defensas)
@@ -697,6 +758,10 @@ public class PlayerController : MonoBehaviour
             Health.Damage(Health.ActualHealth);
             return;
         }
+        if (CameraController.Instancia != null)
+            {
+                CameraController.Instancia.AgitarCamara(0.1f, 0.5f);
+            }
         
         if (Rb != null)
         {
@@ -710,5 +775,9 @@ public class PlayerController : MonoBehaviour
         }
         StateMachine.ChangeState(HurtState);
         Health.Damage(quantityDamage);
+        if (StateMachine.CurrentState != DeathState && StateMachine.CurrentState != StunnedState)
+        {
+            StartInvulnerability(0.6f, 0.01f);
+        }
     }
 }

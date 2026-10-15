@@ -65,10 +65,7 @@ public class EnemyDashAttackState : BaseState
                     {
                         GameObject.Instantiate(enemy.hitSparkPrefab, enemy.attackPoint.position, Quaternion.identity);
                     }
-                    if (CameraController.Instancia != null)
-                    {
-                        CameraController.Instancia.AgitarCamara(0.1f, 0.04f);
-                    }
+                    
                 }
                 playerController.GetAttack(enemy.attackDamage, enemy.transform);
                 damageGiven = true;

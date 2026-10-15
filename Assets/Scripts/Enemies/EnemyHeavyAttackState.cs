@@ -46,10 +46,7 @@ public class EnemyHeavyAttackState : BaseState
                     {
                         GameObject.Instantiate(enemy.hitSparkPrefab, enemy.attackPoint.position, Quaternion.identity);
                     }
-                    if (CameraController.Instancia != null)
-                    {
-                        CameraController.Instancia.AgitarCamara(0.1f, 0.04f);
-                    }
+                    
                     playerController.pushedUp = true;
                     playerController.hurtAndPushDirection = (playerController.transform.position.x > enemy.transform.position.x) ? 1f : -1f;
                 }
@@ -77,7 +74,7 @@ public class EnemyHeavyAttackState : BaseState
 
     
 
-    public void OnAnimationEndFrame()
+    public override void AnimationFinishTrigger()
     {
         if(enemy.CanSeePlayer())
         {

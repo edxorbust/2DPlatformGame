@@ -320,15 +320,16 @@ MonoBehaviour:
   isBlocking: 0
   blockTime: 1
   inmuneToAttacks: 0
+  touchDamageActivated: 1
   arenaDelJefe: {fileID: 0}
-  lightHitStopDuration: 0.07
+  lightHitStopDuration: 0.1
   hitSparkPrefab: {fileID: 8769942275986818781, guid: 44cff9bd8c12e4955a6fd14c3e7f4e71, type: 3}
   bocinaSFX: {fileID: 5080179904439769605}
   nextGroundCheck: {fileID: 7294537808136948013}
   nextGroundCheckSize: 0.2
   groundLayer:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 1088
   sonidoAtaque: {fileID: 8300000, guid: 588098aca690f49f2a7a52c0c96bd826, type: 3}
   fleshCut: {fileID: 8300000, guid: d0385109afb424ff3b98fc19518762de, type: 3}
   idleTime: 2

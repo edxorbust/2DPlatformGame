@@ -71,14 +71,14 @@ public class EnemyIdleState : BaseState
                 }
                 else if(enemy.DistanceToPlayer() > enemy.longAttackRange || enemy.DistanceToPlayer() > enemy.attackRange) 
                 {
-                    if (enemy.IsThereGroundNext())
+                    if (enemy.IsThereGroundNext() && enemy.CanChase())
                     {
                         enemy.StateMachine.ChangeState(enemy.ChaseState);
                     }
                     else
                     {
                         enemy.FacePlayer();
-                        if (enemy.IsThereGroundNext())
+                        if (enemy.IsThereGroundNext() && enemy.CanChase())
                         {
                             enemy.StateMachine.ChangeState(enemy.ChaseState);
                         }

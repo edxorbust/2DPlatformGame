@@ -32,16 +32,23 @@ public class EnemyBlockState : BaseState
         }
     }
 
+    public override void AnimationFinishTrigger()
+    {
+        enemy.Animator.Play("Block");
+    }
+
     public override void PhysicsUpdate()
     {
-        float inerciaPlataformaX = 0f;
+        
         if (enemy.PlataformaActual != null)
         {
+            float inerciaPlataformaX = 0f;
             inerciaPlataformaX = enemy.PlataformaActual.VelocidadActual.x;
+            enemy.Rb.linearVelocity = new Vector2(inerciaPlataformaX, enemy.Rb.linearVelocity.y);
         }
 
         // 3. Aplicamos ambas velocidades sumadas, respetando la gravedad en Y
-        enemy.Rb.linearVelocity = new Vector2(inerciaPlataformaX, enemy.Rb.linearVelocity.y);
+       
     }
 
     public override void Exit()

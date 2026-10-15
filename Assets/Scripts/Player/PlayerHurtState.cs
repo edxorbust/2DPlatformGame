@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class PlayerHurtState : BaseState // O el nombre que tenga tu clase base
 {
@@ -6,7 +7,7 @@ public class PlayerHurtState : BaseState // O el nombre que tenga tu clase base
     public float hitDirection;
     public SwordsmanController swordsman;
     private float timeBeingPushed = 0.5f;
-    private float maxHurtTime = 0.16f;
+    private float maxHurtTime = 0.5f;
     private float timer;
 
     public PlayerHurtState(PlayerController playerContext)
@@ -16,7 +17,7 @@ public class PlayerHurtState : BaseState // O el nombre que tenga tu clase base
 
     public override void Enter()
     {
-        
+        player.controls.Gameplay.Disable();
         player.inmuneToAttacks = true;
         hitDirection = player.hurtAndPushDirection;
         if (player.beingPushed)
@@ -45,6 +46,7 @@ public class PlayerHurtState : BaseState // O el nombre que tenga tu clase base
         else
         {
             player.Animator.Play("Hurt");
+            player.Rb.linearVelocity = new Vector2(player.hurtAndPushDirection * 3f, 6f);
             timer = maxHurtTime;
             
         }
@@ -63,6 +65,12 @@ public class PlayerHurtState : BaseState // O el nombre que tenga tu clase base
             player.StateMachine.ChangeState(player.IdleState);
         }
         
+    }
+    
+    private IEnumerator EsperarYEjecutar(float tiempo)
+    {
+        yield return new WaitForSeconds(tiempo);
+        player.StateMachine.ChangeState(player.IdleState);
     }
 
 
@@ -90,5 +98,6 @@ public class PlayerHurtState : BaseState // O el nombre que tenga tu clase base
             player.pushedUp = false;
         }
         player.inmuneToAttacks = false;
+        player.controls.Gameplay.Enable();
     }
 }

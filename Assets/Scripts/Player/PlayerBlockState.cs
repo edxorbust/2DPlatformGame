@@ -26,6 +26,11 @@ public class PlayerBlockState : BaseState
         player.Animator.Play("Block");
     }
 
+    public override void AnimationFinishTrigger()
+    {
+        player.Animator.Play("Block");
+    }
+
     public override void Update()
     {
         if (parrySuccessful) return;

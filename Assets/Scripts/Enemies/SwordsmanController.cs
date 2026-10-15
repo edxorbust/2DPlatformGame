@@ -178,7 +178,7 @@ public class SwordsmanController : EnemyController
                     Instantiate(hitSparkParryPrefab, blockPoint.position, Quaternion.identity);
                 }
                 
-                if (CameraController.Instancia != null) CameraController.Instancia.AgitarCamara(0.1f, 0.04f);
+                if (CameraController.Instancia != null) CameraController.Instancia.AgitarCamara(0.1f, 0.5f);
                 Animator.Play("Parry");
                 return; 
             }
@@ -187,7 +187,7 @@ public class SwordsmanController : EnemyController
                 ReproducirSonido(blockSound);
                 Health.PostureDamage(postureDamageOnParried/4);
                 StateMachine.ChangeState(BlockState);
-                
+               
                 if (Rb != null)
                 {
                     if (isThrowAttack)

@@ -262,12 +262,12 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 72
   moveSpeed: 3
-  detectionRange: 5
+  detectionRange: 3
   attackRange: 1.35
   longAttackRange: 2
   isFlyingEnemy: 0
   isRangeEnemy: 0
-  groundCheckRadius: 0.2
+  groundCheckRadius: 0.1
   stunDuration: 2
   contactDamage: 10
   knockbackForceHurt: 5
@@ -291,6 +291,8 @@ MonoBehaviour:
   blockTime: 1
   inmuneToAttacks: 0
   touchDamageActivated: 1
+  timeBetweenChase: 1.5
+  chaseCooldownTimer: 0
   arenaDelJefe: {fileID: 0}
   lightHitStopDuration: 0.07
   hitSparkPrefab: {fileID: 8769942275986818781, guid: 44cff9bd8c12e4955a6fd14c3e7f4e71, type: 3}
@@ -300,7 +302,7 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 1088
-  sonidoAtaque: {fileID: 8300000, guid: fef2b65083a294cc6a6783a2c168e3a0, type: 3}
+  sonidoAtaque: {fileID: 8300000, guid: 4ed6f6320898f4ec3b95c215b8eaef84, type: 3}
   fleshCut: {fileID: 8300000, guid: def932bb3596a405592f47acd5d23490, type: 3}
   idleTime: 2
   patrolTime: 3

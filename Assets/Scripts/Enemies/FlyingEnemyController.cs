@@ -28,17 +28,22 @@ public class FlyingEnemyController : EnemyController // Heredamos de tu controla
     protected override void Start()
     {
         base.Start(); // Inicializa la máquina de estados y componentes del padre
-        
         // Aseguramos que sea completamente manejado por código
         //Rb.bodyType.isKinematic = true; 
         // Configuramos los puntos de patrulla al igual que tu plataforma móvil
-        isFlyingEnemy = true;
+        
         posicionA = transform.position;
         if (puntoDestino != null)
         {
             posicionB = puntoDestino.position;
             destinoPatrulla = posicionB;
         }
+    }
+
+    protected override void Awake()
+    {
+        base.Awake();
+        isFlyingEnemy = true;
     }
 
     protected override void FixedUpdate()

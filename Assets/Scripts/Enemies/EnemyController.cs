@@ -57,12 +57,14 @@ public class EnemyController : MonoBehaviour
     public float blockTime = 1f;
     public bool inmuneToAttacks = false;
     public bool touchDamageActivated = true;
+    public float timeBetweenChase = 1.5f;
+    public float chaseCooldownTimer;
 
     [Header("Arena del Jefe (Opcional)")]
     public BossArenaTrigger arenaDelJefe;
 
     [Header("Game Feel & Visuals")]
-    public float lightHitStopDuration = 0.07f;
+    public float lightHitStopDuration = 0.1f;
     public GameObject hitSparkPrefab;
 
     [Header("Componentes Base")]
@@ -125,6 +127,8 @@ public class EnemyController : MonoBehaviour
     protected virtual void Update()
     {
         if (attackCooldownTimer > 0) attackCooldownTimer -= Time.deltaTime;
+        if (DistanceToPlayer() <= attackRange) ResetChaseCooldown();
+        if (chaseCooldownTimer > 0) chaseCooldownTimer -= Time.deltaTime;
         StateMachine.CurrentState?.Update();
     }
 
@@ -155,7 +159,9 @@ public class EnemyController : MonoBehaviour
     private void HandleDeath() => StateMachine.ChangeState(DeathState);
 
     public bool CanAttack() => attackCooldownTimer <= 0f;
+    public bool CanChase() => chaseCooldownTimer <= 0f;
     public void ResetAttackCooldown() => attackCooldownTimer = timeBetweenAttacks;
+    public void ResetChaseCooldown() => chaseCooldownTimer = timeBetweenChase;
     public bool IsThereGroundNext() => Physics2D.OverlapCircle(nextGroundCheck.position, nextGroundCheckSize, groundLayer) != null;
     public float DistanceToPlayer() => playerTarget == null ? Mathf.Infinity : Vector2.Distance(transform.position, playerTarget.position);
     
@@ -245,10 +251,11 @@ public class EnemyController : MonoBehaviour
 
     public virtual void AnimationEvent_OnEnd()
     {
-        if (StateMachine.CurrentState == AttackState) AttackState.OnAnimationEndFrame();
-        if (StateMachine.CurrentState == HurtState) HurtState.AnimationFinishTrigger();
-        if (StateMachine.CurrentState == HeavyAttackState) HeavyAttackState.OnAnimationEndFrame();
-        if (StateMachine.CurrentState == SecondPhaseState) SecondPhaseState.AnimationFinishTrigger();
+        StateMachine.CurrentState.AnimationFinishTrigger();
+        // if (StateMachine.CurrentState == AttackState) AttackState.OnAnimationEndFrame();
+        // if (StateMachine.CurrentState == HurtState) HurtState.AnimationFinishTrigger();
+        // if (StateMachine.CurrentState == HeavyAttackState) HeavyAttackState.OnAnimationEndFrame();
+        // if (StateMachine.CurrentState == SecondPhaseState) SecondPhaseState.AnimationFinishTrigger();
     }
 
     public virtual void DeathBoss_OnEnd()
@@ -285,7 +292,7 @@ public class EnemyController : MonoBehaviour
         ReproducirSonido(fleshCut);
         if (CameraController.Instancia != null)
         {
-            CameraController.Instancia.AgitarCamara(0.1f, 0.04f);
+            CameraController.Instancia.AgitarCamara(0.1f, 0.5f);
         }
                 
         if (StateMachine.CurrentState == StunnedState)

@@ -128,7 +128,7 @@ public class ArcherController : EnemyController
                 if (saludAtacante != null) saludAtacante.PostureDamage(attackDamage / 2); 
                 
                 if (hitSparkParryPrefab != null) Instantiate(hitSparkParryPrefab, blockPoint.position, Quaternion.identity); 
-                if (CameraController.Instancia != null) CameraController.Instancia.AgitarCamara(0.1f, 0.04f); 
+                if (CameraController.Instancia != null) CameraController.Instancia.AgitarCamara(0.1f, 0.5f); 
                 
                 Animator.Play("Block"); 
                 return; 
@@ -139,6 +139,7 @@ public class ArcherController : EnemyController
                 ReproducirSonido(blockSound); 
                 Health.PostureDamage(postureDamageOnParried / 4); 
                 StateMachine.ChangeState(BlockState); 
+                if (CameraController.Instancia != null) CameraController.Instancia.AgitarCamara(0.1f, 0.5f); 
                 
                 if (Rb != null) 
                 {

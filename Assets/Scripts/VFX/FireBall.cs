@@ -11,6 +11,8 @@ public class FireBall : MonoBehaviour
     [Tooltip("Tiempo en segundos antes de que desaparezca si no choca con nada")]
     public float tiempoDeVida = 5f; 
     public float fuerzaKnockback = 5f;
+    public bool deflected;
+    public Transform attackerTransform;
 
     [Header("Efectos Visuales (Opcional)")]
     public GameObject efectoExplosionPrefab;
@@ -43,8 +45,44 @@ public class FireBall : MonoBehaviour
         attacker = attacker1;
     }
 
+    public void Deflecting(Vector2 direccion, float velocidad, Transform attacker1)
+    {
+        deflected = true;
+        if (rb == null) rb = GetComponent<Rigidbody2D>();
+        rb.linearVelocity = direccion.normalized * velocidad;
+
+        // 2. Rotamos el sprite matemáticamente para que mire hacia donde viaja
+        float angulo = Mathf.Atan2(direccion.y, direccion.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(0, 0, angulo);
+
+        attackerTransform = attacker1;
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (deflected)
+        {
+            if (collision.isTrigger) return;
+            if (collision.CompareTag("Enemy"))
+            {
+                FlyingEnemyController flyer = collision.GetComponent<FlyingEnemyController>();
+                
+                if (flyer != null && flyer.StateMachine.CurrentState != flyer.HurtState)
+                {
+                    Transform origenDano = (attackerTransform != null) ? attackerTransform : transform;
+                    float direccionEmpuje = (flyer.transform.position.x > origenDano.position.x) ? 1f : -1f;
+                    flyer.GetAttack(dano, origenDano, true, direccionEmpuje);
+                    
+                    
+                    
+                }
+                
+                // Si le da al jugador, normalmente desaparece al instante
+                deflected = false;
+                Explotar();
+            }
+            return;
+        }
         // 1. Filtros de seguridad: ignoramos a otros enemigos o a los gatillos (Triggers de cámara)
         if (collision.CompareTag("Enemy") || collision.isTrigger) return;
 
@@ -57,7 +95,9 @@ public class FireBall : MonoBehaviour
             if (player != null && player.StateMachine.CurrentState != player.HurtState)
             {
                 // Le pasamos el daño y el transform (quién lo atacó)
-                player.GetAttack(dano, attacker);
+                attacker.GetComponent<EnemyController>().unBlockableAttacking = true;
+                player.GetAttack(dano, attacker, true);
+                attacker.GetComponent<EnemyController>().unBlockableAttacking = false;
                 
                 if(player.StateMachine.CurrentState != player.BlockState)
                 {

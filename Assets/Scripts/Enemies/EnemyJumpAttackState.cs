@@ -102,10 +102,7 @@ public class EnemyJumpAttackState : BaseState
                 );
             }
 
-            if (CameraController.Instancia != null)
-            {
-                CameraController.Instancia.AgitarCamara(0.1f, 0.04f);
-            }
+            
 
             playerController.GetAttack(
                 enemy.attackDamage,

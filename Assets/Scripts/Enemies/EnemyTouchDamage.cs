@@ -16,7 +16,9 @@ public class EnemyTouchDamage : MonoBehaviour
             PlayerController player = collision.GetComponent<PlayerController>();
             if (player != null && player.StateMachine.CurrentState != player.HurtState && enemy.touchDamageActivated)
             {
-                player.GetAttack(enemy.contactDamage, transform);
+                
+                player.GetAttack(enemy.contactDamage, transform, false, true);
+                
                 float direccionEmpuje = (player.transform.position.x > transform.position.x) ? 1f : -1f;
                 player.Rb.linearVelocity = new Vector2(direccionEmpuje * enemy.knockbackForceHurt, player.Rb.linearVelocity.y);
             }

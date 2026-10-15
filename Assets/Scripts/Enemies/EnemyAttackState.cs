@@ -13,11 +13,13 @@ public class EnemyAttackState : BaseState
 
     public override void Enter()
     {
-        comboCounter = 1;
+        
+        comboCounter = Random.Range(1, 4);
         enemy.cannotBeInterrupted = true;
         if (enemy.isFlyingEnemy)
         {
             enemy.IniciarAtaque();
+            comboCounter = 1;
         }
         Attacking();
     }
@@ -43,11 +45,7 @@ public class EnemyAttackState : BaseState
                     enemy.ReproducirSonido(enemy.fleshCut);
                     if (enemy.hitSparkPrefab != null)
                     {
-                        GameObject.Instantiate(enemy.hitSparkPrefab, enemy.attackPoint.position, Quaternion.identity);
-                    }
-                    if (CameraController.Instancia != null)
-                    {
-                        CameraController.Instancia.AgitarCamara(0.1f, 0.04f);
+                        GameObject.Instantiate(enemy.hitSparkPrefab, playerController.Rb.position, Quaternion.identity);
                     }
                 }
                 playerController.GetAttack(enemy.attackDamage, enemy.transform);
@@ -118,7 +116,7 @@ public class EnemyAttackState : BaseState
         }
     }
 
-    public void OnAnimationEndFrame()
+    public override void AnimationFinishTrigger()
     {
         if(enemy.CanSeePlayer())
         {
